@@ -81,16 +81,14 @@ const Index = () => {
             </motion.div>
           </ParallaxSection>
 
-          <ParallaxSection speed={0.3}>
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8 }}
-            >
-              <ExperienceSection />
-            </motion.div>
-          </ParallaxSection>
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+          >
+            <ExperienceSection />
+          </motion.div>
 
           <ParallaxSection speed={0.15}>
             <motion.div
@@ -114,16 +112,14 @@ const Index = () => {
             </motion.div>
           </ParallaxSection>
 
-          <ParallaxSection speed={0.25}>
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8 }}
-            >
-              <StartupSection />
-            </motion.div>
-          </ParallaxSection>
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+          >
+            <StartupSection />
+          </motion.div>
 
           <ParallaxSection speed={0.25}>
             <motion.div

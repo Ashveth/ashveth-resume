@@ -24,7 +24,7 @@ const StartupSection = () => {
   }, []);
 
   return (
-    <section id="startup" ref={sectionRef} className="py-20 relative overflow-hidden">
+    <section id="startup" ref={sectionRef} className="py-32 relative overflow-hidden">
       <div className="container mx-auto px-4 lg:px-8 max-w-6xl">
         <div className="max-w-5xl mx-auto">
           <div className="section-reveal glass-card p-6 md:p-10 lg:p-12 relative overflow-hidden group">
