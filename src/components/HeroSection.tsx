@@ -15,7 +15,7 @@ const HeroSection = () => {
     >
       <ParticleBackground3D />
 
-      <div className="relative z-10 container mx-auto px-4 text-center">
+      <div className="relative z-10 container mx-auto px-4 lg:px-8 text-center">
         <div className="animate-fade-in">
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-display font-bold mb-6 animate-scale-in">
             <span className="gradient-text">Ashveth Pawar</span>

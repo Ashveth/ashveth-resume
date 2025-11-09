@@ -46,13 +46,13 @@ const ExperienceSection = () => {
   ];
 
   return (
-    <section id="experience" ref={sectionRef} className="py-24 px-4 relative">
-      <div className="container mx-auto max-w-6xl">
+    <section id="experience" ref={sectionRef} className="py-20 relative overflow-hidden">
+      <div className="container mx-auto px-4 lg:px-8 max-w-6xl">
         <div className="reveal-fade text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6">
             <span className="gradient-text">Experience</span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full" />
+          <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full mb-6" />
         </div>
 
         <div className="max-w-4xl mx-auto space-y-8">

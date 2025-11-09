@@ -89,22 +89,22 @@ const BlogSection = () => {
   };
 
   return (
-    <section id="blog" className="py-24 px-4 section-reveal relative overflow-hidden">
+    <section id="blog" className="py-20 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent/5 to-transparent" />
       
-      <div className="container mx-auto max-w-7xl relative z-10">
+      <div className="container mx-auto px-4 lg:px-8 max-w-6xl relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12 md:mb-16"
+          className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-display font-bold mb-4 gradient-text">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6 gradient-text">
             Blog & Insights
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full mb-4 md:mb-6" />
-          <p className="text-base md:text-lg text-foreground/60 max-w-2xl mx-auto px-4">
+          <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full mb-6" />
+          <p className="text-lg md:text-xl text-foreground/60 max-w-2xl mx-auto">
             Sharing my journey in AI, hackathons, and building innovative solutions
           </p>
         </motion.div>
@@ -114,7 +114,7 @@ const BlogSection = () => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           {blogPosts.map((post) => (
             <motion.article

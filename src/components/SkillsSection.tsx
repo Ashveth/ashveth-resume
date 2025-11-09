@@ -79,14 +79,15 @@ const SkillsSection = () => {
     <section
       id="skills"
       ref={sectionRef}
-      className="py-24 px-4 reveal-fade"
+      className="py-20 relative overflow-hidden"
     >
-      <div className="container mx-auto max-w-6xl">
+      <div className="container mx-auto px-4 lg:px-8 max-w-6xl">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-display font-bold mb-4 gradient-text">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6 gradient-text">
             Skills & Expertise
           </h2>
-          <p className="text-lg text-foreground/60 max-w-2xl mx-auto">
+          <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full mb-6" />
+          <p className="text-lg md:text-xl text-foreground/60 max-w-2xl mx-auto">
             A comprehensive toolkit for building innovative AI solutions and beautiful user experiences
           </p>
         </div>

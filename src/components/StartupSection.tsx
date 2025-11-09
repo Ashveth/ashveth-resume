@@ -24,8 +24,8 @@ const StartupSection = () => {
   }, []);
 
   return (
-    <section id="startup" ref={sectionRef} className="py-24 px-4 relative">
-      <div className="container mx-auto max-w-6xl">
+    <section id="startup" ref={sectionRef} className="py-20 relative overflow-hidden">
+      <div className="container mx-auto px-4 lg:px-8 max-w-6xl">
         <div className="max-w-5xl mx-auto">
           <div className="section-reveal glass-card p-6 md:p-10 lg:p-12 relative overflow-hidden group">
             <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

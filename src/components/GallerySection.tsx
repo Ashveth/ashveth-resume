@@ -53,13 +53,14 @@ const GallerySection = () => {
   };
 
   return (
-    <section id="gallery" className="section-reveal py-20 px-6">
-      <div className="max-w-7xl mx-auto">
+    <section id="gallery" className="py-20 relative overflow-hidden">
+      <div className="container mx-auto px-4 lg:px-8 max-w-6xl">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6 gradient-text">
             Gallery
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full mb-6" />
+          <p className="text-lg md:text-xl text-foreground/60 max-w-2xl mx-auto">
             A visual journey through achievements, hackathons, and memorable moments
           </p>
         </div>

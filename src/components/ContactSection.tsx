@@ -103,7 +103,7 @@ const ContactSection = () => {
   ];
 
   return (
-    <section id="contact" ref={sectionRef} className="py-32 relative overflow-hidden">
+    <section id="contact" ref={sectionRef} className="py-20 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
       
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
@@ -112,7 +112,7 @@ const ContactSection = () => {
             Get in <span className="gradient-text">Touch</span>
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full mb-6" />
-          <p className="text-xl text-foreground/70 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-foreground/60 max-w-2xl mx-auto">
             Let's connect and build something amazing together
           </p>
         </div>

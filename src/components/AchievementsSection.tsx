@@ -68,13 +68,13 @@ const AchievementsSection = () => {
   ];
 
   return (
-    <section id="achievements" ref={sectionRef} className="py-32 relative">
+    <section id="achievements" ref={sectionRef} className="py-20 relative overflow-hidden">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="reveal-fade text-center mb-16">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6">
             <span className="gradient-text">Achievements</span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full" />
+          <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full mb-6" />
         </div>
 
         <div className="max-w-5xl mx-auto space-y-8">
