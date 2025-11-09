@@ -70,39 +70,6 @@ const Index = () => {
             </motion.div>
           </ParallaxSection>
 
-          <ParallaxSection speed={0.3}>
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8 }}
-            >
-              <AchievementsSection />
-            </motion.div>
-          </ParallaxSection>
-
-          <ParallaxSection speed={0.15}>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8 }}
-            >
-              <ProjectsSection />
-            </motion.div>
-          </ParallaxSection>
-
-          <ParallaxSection speed={0.25}>
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8 }}
-            >
-              <StartupSection />
-            </motion.div>
-          </ParallaxSection>
-
           <ParallaxSection speed={0.2}>
             <motion.div
               initial={{ opacity: 0, y: 50 }}
@@ -127,12 +94,34 @@ const Index = () => {
 
           <ParallaxSection speed={0.15}>
             <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8 }}
+            >
+              <ProjectsSection />
+            </motion.div>
+          </ParallaxSection>
+
+          <ParallaxSection speed={0.3}>
+            <motion.div
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8 }}
             >
-              <BlogSection />
+              <AchievementsSection />
+            </motion.div>
+          </ParallaxSection>
+
+          <ParallaxSection speed={0.25}>
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8 }}
+            >
+              <StartupSection />
             </motion.div>
           </ParallaxSection>
 
@@ -144,6 +133,17 @@ const Index = () => {
               transition={{ duration: 0.8 }}
             >
               <GallerySection />
+            </motion.div>
+          </ParallaxSection>
+
+          <ParallaxSection speed={0.15}>
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8 }}
+            >
+              <BlogSection />
             </motion.div>
           </ParallaxSection>
 
