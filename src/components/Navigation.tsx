@@ -19,13 +19,13 @@ const Navigation = () => {
 
   const navItems = [
     { label: "About", href: "#about" },
-    { label: "Achievements", href: "#achievements" },
-    { label: "Projects", href: "#projects" },
-    { label: "Startup", href: "#startup" },
     { label: "Skills", href: "#skills" },
     { label: "Experience", href: "#experience" },
-    { label: "Blog", href: "#blog" },
+    { label: "Projects", href: "#projects" },
+    { label: "Achievements", href: "#achievements" },
+    { label: "Startup", href: "#startup" },
     { label: "Gallery", href: "#gallery" },
+    { label: "Blog", href: "#blog" },
     { label: "Contact", href: "#contact" },
   ];
 
