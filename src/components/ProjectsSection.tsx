@@ -68,7 +68,7 @@ const ProjectsSection = () => {
   ];
 
   return (
-    <section id="projects" ref={sectionRef} className="py-20 relative overflow-hidden">
+    <section id="projects" ref={sectionRef} className="py-32 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent/5 to-transparent" />
       
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
@@ -82,7 +82,7 @@ const ProjectsSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto mb-12">
           {projects.map((project, index) => (
             <a
               key={index}

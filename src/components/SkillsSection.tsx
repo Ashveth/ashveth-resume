@@ -79,7 +79,7 @@ const SkillsSection = () => {
     <section
       id="skills"
       ref={sectionRef}
-      className="py-20 relative overflow-hidden"
+      className="py-32 relative overflow-hidden"
     >
       <div className="container mx-auto px-4 lg:px-8 max-w-6xl">
         <div className="text-center mb-16">

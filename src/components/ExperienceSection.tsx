@@ -46,7 +46,7 @@ const ExperienceSection = () => {
   ];
 
   return (
-    <section id="experience" ref={sectionRef} className="py-20 relative overflow-hidden">
+    <section id="experience" ref={sectionRef} className="py-32 relative overflow-hidden">
       <div className="container mx-auto px-4 lg:px-8 max-w-6xl">
         <div className="reveal-fade text-center mb-16">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6">

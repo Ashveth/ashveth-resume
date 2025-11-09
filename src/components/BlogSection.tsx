@@ -89,7 +89,7 @@ const BlogSection = () => {
   };
 
   return (
-    <section id="blog" className="py-20 relative overflow-hidden">
+    <section id="blog" className="py-32 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent/5 to-transparent" />
       
       <div className="container mx-auto px-4 lg:px-8 max-w-6xl relative z-10">
@@ -179,7 +179,7 @@ const BlogSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-center mt-12"
+          className="text-center mt-12 mb-16"
         >
           <Button
             size="lg"

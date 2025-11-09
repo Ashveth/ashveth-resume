@@ -25,7 +25,7 @@ const AboutSection = () => {
   }, []);
 
   return (
-    <section id="about" ref={sectionRef} className="py-20 relative overflow-hidden">
+    <section id="about" ref={sectionRef} className="py-32 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
       
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
@@ -82,7 +82,7 @@ const AboutSection = () => {
             </div>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-6 mb-16">
             <div className="reveal-left glass-card p-6 hover:scale-105 transition-transform duration-300 group">
               <div className="w-14 h-14 rounded-xl bg-primary/20 flex items-center justify-center mb-4 group-hover:bg-primary/30 transition-colors">
                 <Award className="w-7 h-7 text-primary" />
