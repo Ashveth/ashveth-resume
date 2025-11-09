@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowDown, Sparkles, Download } from "lucide-react";
+import { ArrowDown, Download } from "lucide-react";
 import ParticleBackground3D from "./ParticleBackground3D";
 
 const HeroSection = () => {
@@ -17,13 +17,6 @@ const HeroSection = () => {
 
       <div className="relative z-10 container mx-auto px-4 text-center">
         <div className="animate-fade-in">
-          <div className="inline-flex items-center gap-2 glass-card px-6 py-3 mb-8 animate-glow-pulse">
-            <Sparkles className="w-5 h-5 text-primary" />
-            <span className="text-sm font-medium text-foreground/80">
-              Award-Winning AI Innovator
-            </span>
-          </div>
-
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-display font-bold mb-6 animate-scale-in">
             <span className="gradient-text">Ashveth Pawar</span>
           </h1>
