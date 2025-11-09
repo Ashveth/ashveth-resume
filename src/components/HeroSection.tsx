@@ -40,7 +40,7 @@ const HeroSection = () => {
             <Button
               size="lg"
               onClick={scrollToAbout}
-              className="glass-card bg-primary/90 hover:bg-primary text-primary-foreground border-primary/50 hover:shadow-lg hover:shadow-primary/50 transition-all duration-300 group"
+              className="group"
             >
               Explore My Work
               <ArrowDown className="ml-2 group-hover:translate-y-1 transition-transform" />
@@ -49,7 +49,7 @@ const HeroSection = () => {
               size="lg"
               variant="outline"
               asChild
-              className="glass-card border-primary/30 hover:border-primary/60 hover:bg-primary/10 transition-all duration-300 group"
+              className="group"
             >
               <a href="/Ashveth_Pawar_Resume.pdf" download="Ashveth_Pawar_Resume.pdf">
                 Download Resume
@@ -60,7 +60,6 @@ const HeroSection = () => {
               size="lg"
               variant="outline"
               onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
-              className="glass-card border-primary/30 hover:border-primary/60 hover:bg-primary/10 transition-all duration-300"
             >
               Get in Touch
             </Button>
