@@ -30,7 +30,7 @@ const Index = () => {
       rootMargin: "0px 0px -100px 0px",
     });
 
-    document.querySelectorAll(".section-reveal").forEach((el) => {
+    document.querySelectorAll(".section-reveal, .reveal-fade, .reveal-left, .reveal-right, .reveal-scale, .reveal-rotate").forEach((el) => {
       observer.observe(el);
     });
 

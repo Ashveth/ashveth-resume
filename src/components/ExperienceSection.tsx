@@ -16,7 +16,7 @@ const ExperienceSection = () => {
       { threshold: 0.1 }
     );
 
-    const elements = sectionRef.current?.querySelectorAll(".section-reveal");
+    const elements = sectionRef.current?.querySelectorAll(".section-reveal, .reveal-fade, .reveal-left, .reveal-right, .reveal-scale, .reveal-rotate");
     elements?.forEach((el) => observer.observe(el));
 
     return () => observer.disconnect();
@@ -48,7 +48,7 @@ const ExperienceSection = () => {
   return (
     <section id="experience" ref={sectionRef} className="py-32 relative">
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="section-reveal text-center mb-16">
+        <div className="reveal-fade text-center mb-16">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6">
             <span className="gradient-text">Experience</span>
           </h2>
@@ -59,7 +59,7 @@ const ExperienceSection = () => {
           {experiences.map((exp, index) => (
             <div
               key={index}
-              className="section-reveal glass-card p-8 hover:scale-[1.02] transition-all duration-500 group"
+              className="reveal-left glass-card p-8 hover:scale-[1.02] transition-all duration-500 group"
               style={{ transitionDelay: `${index * 0.1}s` }}
             >
               <div className="flex flex-col md:flex-row gap-6">

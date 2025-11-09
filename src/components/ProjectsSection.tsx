@@ -16,7 +16,7 @@ const ProjectsSection = () => {
       { threshold: 0.1 }
     );
 
-    const elements = sectionRef.current?.querySelectorAll(".section-reveal");
+    const elements = sectionRef.current?.querySelectorAll(".section-reveal, .reveal-fade, .reveal-left, .reveal-right, .reveal-scale, .reveal-rotate");
     elements?.forEach((el) => observer.observe(el));
 
     return () => observer.disconnect();
@@ -72,7 +72,7 @@ const ProjectsSection = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent/5 to-transparent" />
       
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
-        <div className="section-reveal text-center mb-16">
+        <div className="reveal-fade text-center mb-16">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6">
             AI <span className="gradient-text">Projects</span>
           </h2>
@@ -89,7 +89,7 @@ const ProjectsSection = () => {
               href={project.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="section-reveal glass-card p-8 group hover:scale-105 transition-all duration-500 cursor-pointer"
+              className="reveal-rotate glass-card p-8 group hover:scale-105 transition-all duration-500 cursor-pointer"
               style={{ transitionDelay: `${index * 0.1}s` }}
             >
               <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${project.gradient} flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300`}>

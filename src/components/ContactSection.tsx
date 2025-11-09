@@ -26,7 +26,7 @@ const ContactSection = () => {
       { threshold: 0.1 }
     );
 
-    const elements = sectionRef.current?.querySelectorAll(".section-reveal");
+    const elements = sectionRef.current?.querySelectorAll(".section-reveal, .reveal-fade, .reveal-left, .reveal-right, .reveal-scale, .reveal-rotate");
     elements?.forEach((el) => observer.observe(el));
 
     return () => observer.disconnect();
@@ -107,7 +107,7 @@ const ContactSection = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
       
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
-        <div className="section-reveal text-center mb-16">
+        <div className="reveal-fade text-center mb-16">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6">
             Get in <span className="gradient-text">Touch</span>
           </h2>
@@ -119,7 +119,7 @@ const ContactSection = () => {
 
         <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12">
           {/* Contact Form */}
-          <div className="section-reveal">
+          <div className="reveal-left">
             <form onSubmit={handleSubmit} className="glass-card p-8 space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium mb-2 text-foreground/80">
@@ -175,7 +175,7 @@ const ContactSection = () => {
           </div>
 
           {/* Contact Information */}
-          <div className="section-reveal space-y-4">
+          <div className="reveal-right space-y-4">
             {contactLinks.map((contact, index) => (
               <a
                 key={index}

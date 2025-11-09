@@ -79,7 +79,7 @@ const SkillsSection = () => {
     <section
       id="skills"
       ref={sectionRef}
-      className="py-24 px-4 section-reveal"
+      className="py-24 px-4 reveal-fade"
     >
       <div className="container mx-auto max-w-6xl">
         <div className="text-center mb-16">

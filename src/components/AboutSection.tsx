@@ -18,7 +18,7 @@ const AboutSection = () => {
       { threshold: 0.1 }
     );
 
-    const elements = sectionRef.current?.querySelectorAll(".section-reveal");
+    const elements = sectionRef.current?.querySelectorAll(".section-reveal, .reveal-fade, .reveal-left, .reveal-right, .reveal-scale, .reveal-rotate");
     elements?.forEach((el) => observer.observe(el));
 
     return () => observer.disconnect();
@@ -30,14 +30,14 @@ const AboutSection = () => {
       
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         <div className="max-w-5xl mx-auto">
-          <div className="section-reveal text-center mb-16">
+          <div className="reveal-fade text-center mb-16">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6">
               About <span className="gradient-text">Me</span>
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full" />
           </div>
 
-          <div className="section-reveal glass-card p-8 md:p-12 mb-12">
+          <div className="reveal-scale glass-card p-8 md:p-12 mb-12">
             <div className="grid md:grid-cols-2 gap-8 items-center mb-8">
               <div className="order-2 md:order-1">
                 <div className="flex items-start gap-4 mb-6">
@@ -83,7 +83,7 @@ const AboutSection = () => {
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
-            <div className="section-reveal glass-card p-6 hover:scale-105 transition-transform duration-300 group">
+            <div className="reveal-left glass-card p-6 hover:scale-105 transition-transform duration-300 group">
               <div className="w-14 h-14 rounded-xl bg-primary/20 flex items-center justify-center mb-4 group-hover:bg-primary/30 transition-colors">
                 <Award className="w-7 h-7 text-primary" />
               </div>
@@ -103,7 +103,7 @@ const AboutSection = () => {
               </p>
             </div>
 
-            <div className="section-reveal glass-card p-6 hover:scale-105 transition-transform duration-300 group" style={{ transitionDelay: "0.2s" }}>
+            <div className="reveal-right glass-card p-6 hover:scale-105 transition-transform duration-300 group" style={{ transitionDelay: "0.2s" }}>
               <div className="w-14 h-14 rounded-xl bg-primary/20 flex items-center justify-center mb-4 group-hover:bg-primary/30 transition-colors">
                 <BookOpen className="w-7 h-7 text-primary" />
               </div>
