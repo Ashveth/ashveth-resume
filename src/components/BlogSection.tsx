@@ -98,13 +98,13 @@ const BlogSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12 md:mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-display font-bold mb-4 gradient-text">
             Blog & Insights
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full mb-6" />
-          <p className="text-lg text-foreground/60 max-w-2xl mx-auto">
+          <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full mb-4 md:mb-6" />
+          <p className="text-base md:text-lg text-foreground/60 max-w-2xl mx-auto px-4">
             Sharing my journey in AI, hackathons, and building innovative solutions
           </p>
         </motion.div>
@@ -142,29 +142,29 @@ const BlogSection = () => {
                 </div>
               </div>
 
-              <div className="p-6">
-                <div className="flex items-center gap-4 text-sm text-foreground/50 mb-3">
+              <div className="p-5 md:p-6">
+                <div className="flex items-center gap-3 md:gap-4 text-xs md:text-sm text-foreground/50 mb-3">
                   <div className="flex items-center gap-1">
-                    <Calendar className="w-4 h-4" />
-                    <span>{post.date}</span>
+                    <Calendar className="w-3 h-3 md:w-4 md:h-4" />
+                    <span className="whitespace-nowrap">{post.date}</span>
                   </div>
                   <div className="flex items-center gap-1">
-                    <Clock className="w-4 h-4" />
-                    <span>{post.readTime}</span>
+                    <Clock className="w-3 h-3 md:w-4 md:h-4" />
+                    <span className="whitespace-nowrap">{post.readTime}</span>
                   </div>
                 </div>
 
-                <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors">
+                <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3 group-hover:text-primary transition-colors line-clamp-2">
                   {post.title}
                 </h3>
 
-                <p className="text-foreground/60 mb-4 line-clamp-3">
+                <p className="text-sm md:text-base text-foreground/60 mb-4 line-clamp-3">
                   {post.excerpt}
                 </p>
 
                 <Button
                   variant="ghost"
-                  className="group/btn p-0 h-auto font-medium text-primary hover:text-primary hover:bg-transparent"
+                  className="group/btn p-0 h-auto font-medium text-sm md:text-base text-primary hover:text-primary hover:bg-transparent"
                 >
                   Read More
                   <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
