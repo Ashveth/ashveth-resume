@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import { useSectionTransition } from "@/hooks/useSectionTransition";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { navigateToSection } = useSectionTransition();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,11 +30,8 @@ const Navigation = () => {
   ];
 
   const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-      setIsMobileMenuOpen(false);
-    }
+    navigateToSection(href);
+    setIsMobileMenuOpen(false);
   };
 
   return (
