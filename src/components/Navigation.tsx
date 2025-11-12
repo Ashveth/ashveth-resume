@@ -1,16 +1,12 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, LogIn, LogOut } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useSectionTransition } from "@/hooks/useSectionTransition";
-import { useAuth } from "@/hooks/useAuth";
-import { useNavigate } from "react-router-dom";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { navigateToSection } = useSectionTransition();
-  const { user, signOut } = useAuth();
-  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -73,25 +69,6 @@ const Navigation = () => {
                   {item.label}
                 </Button>
               ))}
-              {user ? (
-                <Button
-                  variant="ghost"
-                  onClick={signOut}
-                  className="text-foreground/80 hover:text-foreground hover:bg-primary/10 transition-all duration-300"
-                >
-                  <LogOut className="w-4 h-4 mr-2" />
-                  Sign Out
-                </Button>
-              ) : (
-                <Button
-                  variant="ghost"
-                  onClick={() => navigate('/auth')}
-                  className="text-foreground/80 hover:text-foreground hover:bg-primary/10 transition-all duration-300"
-                >
-                  <LogIn className="w-4 h-4 mr-2" />
-                  Sign In
-                </Button>
-              )}
             </div>
 
             {/* Mobile Menu Button */}
@@ -126,25 +103,6 @@ const Navigation = () => {
                   {item.label}
                 </Button>
               ))}
-              {user ? (
-                <Button
-                  variant="ghost"
-                  onClick={signOut}
-                  className="text-lg justify-start text-foreground/80 hover:text-foreground hover:bg-primary/10 transition-all duration-300"
-                >
-                  <LogOut className="w-4 h-4 mr-2" />
-                  Sign Out
-                </Button>
-              ) : (
-                <Button
-                  variant="ghost"
-                  onClick={() => navigate('/auth')}
-                  className="text-lg justify-start text-foreground/80 hover:text-foreground hover:bg-primary/10 transition-all duration-300"
-                >
-                  <LogIn className="w-4 h-4 mr-2" />
-                  Sign In
-                </Button>
-              )}
             </div>
           </div>
         </div>
