@@ -33,6 +33,16 @@ const AchievementsSection = () => {
       bgColor: "bg-yellow-400/10",
     },
     {
+      icon: Trophy,
+      title: "Certificate of Participation – Build-a-thon Hackathon 2025",
+      organization: "The Buildathon Foundation",
+      description:
+        "I'm delighted to have successfully participated in the Build-a-thon Hackathon 2025, organized by The Buildathon Foundation, held from November 7th to 10th, 2025. It was an incredible experience filled with creativity, teamwork, and problem-solving! Collaborating with passionate and talented individuals to build innovative solutions throughout the hackathon was truly inspiring.",
+      links: [{ label: "Verify Certificate", url: "https://verification.givemycertificate.com/vibe012a29-328d-40ed-b9b4-0746d91c1443" }],
+      color: "text-cyan-400",
+      bgColor: "bg-cyan-400/10",
+    },
+    {
       icon: Users,
       title: "Participant – Smart India Hackathon 2025",
       organization: "Smart India Hackathon",

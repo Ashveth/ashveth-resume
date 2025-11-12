@@ -5,6 +5,7 @@ import smartIndiaCert from "@/assets/smart-india-certificate.png";
 import uxcelerateCert from "@/assets/uxccelerate-certificate.png";
 import filmFestivalMenu from "@/assets/film-festival-menu.png";
 import filmFestivalPanel from "@/assets/film-festival-panel.png";
+import buildathonCert from "@/assets/buildathon-certificate.png";
 
 const galleryItems = [
   {
@@ -34,6 +35,13 @@ const galleryItems = [
     title: "Panel Discussion",
     category: "Film Festival",
     description: "Industry experts panel at LocalHost AI Film Festival"
+  },
+  {
+    id: 5,
+    src: buildathonCert,
+    title: "Build-a-thon Hackathon 2025",
+    category: "Certificate of Participation",
+    description: "Successfully participated in the annual Build-a-thon Hackathon held from November 7 to 10, 2025, organized by The Buildathon Foundation"
   }
 ];
 
