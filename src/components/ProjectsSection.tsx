@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { ExternalLink, Sprout, BookOpen, Home, Heart, Scale, Plane } from "lucide-react";
+import { ExternalLink, Sprout, BookOpen, Home, Heart, Scale, Plane, Stethoscope } from "lucide-react";
 
 const ProjectsSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -64,6 +64,13 @@ const ProjectsSection = () => {
       tagline: "AI-powered Travel Planner",
       url: "https://lnkd.in/eAAUGUq2",
       gradient: "from-teal-500 to-green-600",
+    },
+    {
+      icon: Stethoscope,
+      name: "AI HealthMate",
+      tagline: "Multilingual Health AI Assistant",
+      url: "https://health-mate-multilingual.vercel.app/",
+      gradient: "from-emerald-500 to-teal-600",
     },
   ];
 
