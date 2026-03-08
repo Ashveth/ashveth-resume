@@ -106,7 +106,7 @@ const VideoCard = ({
             <div className="absolute inset-0 bg-secondary/60 animate-pulse" />
           )}
           <img
-            src={`https://img.youtube.com/vi/${video.id}/maxresdefault.jpg`}
+            src={video.thumbnail || `https://img.youtube.com/vi/${video.id}/maxresdefault.jpg`}
             alt={video.title}
             loading="lazy"
             onLoad={() => setImgLoaded(true)}
