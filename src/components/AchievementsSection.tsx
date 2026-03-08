@@ -24,6 +24,7 @@ const AchievementsSection = () => {
     { icon: Users, title: "Participant – Smart India Hackathon 2025", organization: "Smart India Hackathon", description: "Developed HealthMate Multilingual – A comprehensive healthcare solution.", links: [{ label: "Live Demo", url: "https://health-mate-multilingual.vercel.app/" }, { label: "GitHub", url: "https://github.com/Ashveth/health-mate-multilingual" }, { label: "Demo Video", url: "https://youtu.be/r8ME_kwBRlQ?si=BtZWaLqPn2xKErs3" }], color: "text-blue-400", bgColor: "bg-blue-400/10" },
     { icon: Award, title: "Certificate of Excellence – UXccelerate VibeHack 2025", organization: "VibeHack 2025", description: "Developed Stayhub – Find your stay, your way.", links: [{ label: "Project Link", url: "https://lnkd.in/edbBPQip" }], color: "text-purple-400", bgColor: "bg-purple-400/10" },
     { icon: Film, title: "Attendee – LocalHost AI Film Festival 2025", organization: "LocalHost", description: "3-day event merging creativity and technology with insights from industry leaders.", color: "text-pink-400", bgColor: "bg-pink-400/10" },
+    { icon: Users, title: "Participant – MumbaiHacks 2025", organization: "Tech Entrepreneurs Association of Mumbai", description: "Participated in the largest Agentic AI hackathon held on November 28–29, 2025 in Mumbai.", color: "text-orange-400", bgColor: "bg-orange-400/10" },
   ];
 
   return (
