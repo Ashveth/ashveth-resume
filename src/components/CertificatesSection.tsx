@@ -5,7 +5,7 @@ import { X, ChevronLeft, ChevronRight, ExternalLink, Eye } from "lucide-react";
 import smartIndiaCert from "@/assets/smart-india-certificate.png";
 import uxcelerateCert from "@/assets/uxccelerate-certificate.png";
 import buildathonCert from "@/assets/buildathon-certificate.png";
-import buildathonFoundation from "@/assets/certs/buildathon.jpg";
+
 import codeForImpact from "@/assets/certs/code-for-impact.jpg";
 import grizzlyHacks from "@/assets/certs/grizzly-hacks.jpg";
 import hackEarth2026 from "@/assets/certs/hack-earth-2026.jpg";
