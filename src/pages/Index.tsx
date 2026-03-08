@@ -5,6 +5,7 @@ import HeroSection from "@/components/HeroSection";
 import ScrollProgress from "@/components/ScrollProgress";
 import CinematicSection from "@/components/CinematicSection";
 import FloatingScene3D from "@/components/FloatingScene3D";
+import LightModeBackground from "@/components/LightModeBackground";
 import { useLenis } from "@/hooks/useLenis";
 
 // Lazy load heavier sections
