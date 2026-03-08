@@ -1,4 +1,4 @@
-import { Briefcase, Code } from "lucide-react";
+import { Briefcase, Code, FileText } from "lucide-react";
 import { use3DTilt } from "@/hooks/use3DTilt";
 import { motion } from "framer-motion";
 
@@ -19,6 +19,7 @@ const cardVariants = {
 
 const ExperienceSection = () => {
   const experiences = [
+    { icon: FileText, title: "Founder", company: "PdfSizeFix", period: "2024 – Present", description: "Built a free, privacy-focused all-in-one online utility platform with PDF tools, calculators, AI-powered features, and more — serving users worldwide with no signup required.", color: "text-cyan-400", bgColor: "bg-cyan-400/10", link: "https://www.pdfsizefix.in/" },
     { icon: Briefcase, title: "Co-founder", company: "Curloft", period: "Aug 2024 – Present", description: "Building websites, blogs, and content for creators and small businesses. Leading product design and development.", color: "text-purple-400", bgColor: "bg-purple-400/10" },
     { icon: Code, title: "Student Developer", company: "Mahatma Gandhi Mission's College of Engineering and Technology", period: "2024 – Present", description: "Pursuing B.Tech in Computer Engineering. Active in hackathons, AI projects, and technical communities.", color: "text-blue-400", bgColor: "bg-blue-400/10" },
   ];

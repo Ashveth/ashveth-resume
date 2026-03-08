@@ -8,6 +8,10 @@ import uxcelerateCert from "@/assets/uxccelerate-certificate.png";
 import filmFestivalMenu from "@/assets/film-festival-menu.png";
 import filmFestivalPanel from "@/assets/film-festival-panel.png";
 import buildathonCert from "@/assets/buildathon-certificate.png";
+import pdfsizefixHero from "@/assets/pdfsizefix-hero.png";
+import pdfsizefixTools from "@/assets/pdfsizefix-tools.png";
+import pdfsizefixAbout from "@/assets/pdfsizefix-about.png";
+import pdfsizefixHumanizer from "@/assets/pdfsizefix-humanizer.png";
 
 const TiltImage = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const ref = use3DTilt({ maxTilt: 6, scale: 1.02 });
@@ -20,6 +24,10 @@ const galleryItems = [
   { id: 3, src: filmFestivalMenu, title: "LocalHost AI Film Festival 2025", category: "Event Attendance", description: "3-day AI Film Festival merging creativity and technology" },
   { id: 4, src: filmFestivalPanel, title: "Panel Discussion", category: "Film Festival", description: "Industry experts panel at LocalHost AI Film Festival" },
   { id: 5, src: buildathonCert, title: "Build-a-thon Hackathon 2025", category: "Certificate of Participation", description: "Successfully participated in the annual Build-a-thon Hackathon held from November 7 to 10, 2025" },
+  { id: 6, src: pdfsizefixHero, title: "PdfSizeFix — Homepage", category: "Startup", description: "All-in-One Online Tools platform with PDF tools, calculators, AI features & more" },
+  { id: 7, src: pdfsizefixTools, title: "PdfSizeFix — Tools Overview", category: "Startup", description: "Comprehensive suite of PDF tools, calculators, utilities, AI tools & games" },
+  { id: 8, src: pdfsizefixAbout, title: "PdfSizeFix — About the Creator", category: "Startup", description: "About section showcasing the founder and mission behind PdfSizeFix" },
+  { id: 9, src: pdfsizefixHumanizer, title: "PdfSizeFix — AI Humanizer", category: "Startup", description: "AI Text to Human Converter — convert AI-generated text into natural writing" },
 ];
 
 const cardVariants = {
