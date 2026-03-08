@@ -1,26 +1,26 @@
 import { useEffect, useState } from "react";
 
 const ScrollProgress = () => {
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      const windowHeight = window.innerHeight;
-      const documentHeight = document.documentElement.scrollHeight - windowHeight;
-      const scrolled = window.scrollY;
-      const progress = (scrolled / documentHeight) * 100;
-      setScrollProgress(progress);
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      setProgress(h > 0 ? (window.scrollY / h) * 100 : 0);
     };
-
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <div className="fixed top-0 left-0 w-full h-1 bg-background/50 backdrop-blur-sm z-50">
+    <div className="fixed top-0 left-0 w-full h-[2px] z-[60]">
       <div
-        className="h-full bg-gradient-to-r from-primary via-accent to-primary transition-all duration-300 ease-out"
-        style={{ width: `${scrollProgress}%` }}
+        className="h-full transition-all duration-150 ease-out"
+        style={{
+          width: `${progress}%`,
+          background: "linear-gradient(90deg, hsl(var(--primary)), hsl(var(--accent)))",
+          boxShadow: "0 0 8px hsl(var(--primary) / 0.5)",
+        }}
       />
     </div>
   );

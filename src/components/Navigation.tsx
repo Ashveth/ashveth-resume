@@ -1,19 +1,16 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
-import { useSectionTransition } from "@/hooks/useSectionTransition";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { navigateToSection } = useSectionTransition();
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
-
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -23,14 +20,15 @@ const Navigation = () => {
     { label: "Experience", href: "#experience" },
     { label: "Projects", href: "#projects" },
     { label: "Achievements", href: "#achievements" },
-    { label: "Startup", href: "#startup" },
+    { label: "Certificates", href: "#certificates" },
     { label: "Gallery", href: "#gallery" },
     { label: "Blog", href: "#blog" },
     { label: "Contact", href: "#contact" },
   ];
 
   const scrollToSection = (href: string) => {
-    navigateToSection(href);
+    const el = document.querySelector(href);
+    if (el) el.scrollIntoView({ behavior: "smooth" });
     setIsMobileMenuOpen(false);
   };
 
@@ -39,46 +37,47 @@ const Navigation = () => {
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled
-            ? "glass-card shadow-lg shadow-primary/5"
-            : "bg-transparent"
+            ? "py-2"
+            : "py-4"
         }`}
       >
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="flex items-center justify-between h-20">
+          <div
+            className={`flex items-center justify-between transition-all duration-500 ${
+              isScrolled
+                ? "glass-card px-6 py-3 rounded-full"
+                : "px-2 py-2"
+            }`}
+          >
             {/* Logo */}
-            <a
-              href="#hero"
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToSection("#hero");
-              }}
-              className="text-2xl font-display font-bold gradient-text hover:scale-105 transition-transform duration-300"
+            <button
+              onClick={() => scrollToSection("#hero")}
+              className="text-lg font-display font-semibold tracking-tight text-foreground hover:text-primary transition-colors duration-300"
             >
-              Ashveth's Portfolio
-            </a>
+              Ashveth.
+            </button>
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-1">
+            {/* Desktop */}
+            <div className="hidden lg:flex items-center gap-1">
               {navItems.map((item) => (
-                <Button
+                <button
                   key={item.href}
-                  variant="ghost"
                   onClick={() => scrollToSection(item.href)}
-                  className="text-foreground/80 hover:text-foreground hover:bg-primary/10 transition-all duration-300"
+                  className="px-3 py-1.5 text-[13px] font-medium text-muted-foreground hover:text-foreground rounded-full hover:bg-secondary/60 transition-all duration-300"
                 >
                   {item.label}
-                </Button>
+                </button>
               ))}
             </div>
 
-            {/* Mobile Menu Button */}
+            {/* Mobile */}
             <Button
               variant="ghost"
               size="icon"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden"
+              className="lg:hidden rounded-full w-9 h-9"
             >
-              {isMobileMenuOpen ? <X /> : <Menu />}
+              {isMobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
             </Button>
           </div>
         </div>
@@ -86,24 +85,27 @@ const Navigation = () => {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-40 md:hidden">
+        <div className="fixed inset-0 z-40 lg:hidden">
           <div
-            className="absolute inset-0 bg-background/95 backdrop-blur-xl"
+            className="absolute inset-0"
+            style={{
+              background: "hsl(var(--background) / 0.9)",
+              backdropFilter: "blur(40px) saturate(180%)",
+              WebkitBackdropFilter: "blur(40px) saturate(180%)",
+            }}
             onClick={() => setIsMobileMenuOpen(false)}
           />
-          <div className="relative glass-card m-4 mt-24 p-8 animate-fade-in">
-            <div className="flex flex-col space-y-4">
-              {navItems.map((item) => (
-                <Button
-                  key={item.href}
-                  variant="ghost"
-                  onClick={() => scrollToSection(item.href)}
-                  className="text-lg justify-start text-foreground/80 hover:text-foreground hover:bg-primary/10 transition-all duration-300"
-                >
-                  {item.label}
-                </Button>
-              ))}
-            </div>
+          <div className="relative flex flex-col items-center justify-center h-full gap-2">
+            {navItems.map((item, i) => (
+              <button
+                key={item.href}
+                onClick={() => scrollToSection(item.href)}
+                className="text-2xl font-display font-medium text-muted-foreground hover:text-foreground transition-all duration-300 py-2 animate-fade-in"
+                style={{ animationDelay: `${i * 0.05}s` }}
+              >
+                {item.label}
+              </button>
+            ))}
           </div>
         </div>
       )}

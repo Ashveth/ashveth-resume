@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
@@ -14,23 +14,24 @@ import CertificatesSection from "@/components/CertificatesSection";
 import GallerySection from "@/components/GallerySection";
 import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
-import ParallaxSection from "@/components/ParallaxSection";
+
+const sectionAnimation = {
+  initial: { opacity: 0, y: 40 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "-80px" },
+  transition: { duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] },
+};
 
 const Index = () => {
   useEffect(() => {
-    // Smooth scroll reveal animation observer
-    const observerCallback = (entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("active");
-        }
-      });
-    };
-
-    const observer = new IntersectionObserver(observerCallback, {
-      threshold: 0.1,
-      rootMargin: "0px 0px -100px 0px",
-    });
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add("active");
+        });
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -80px 0px" }
+    );
 
     document.querySelectorAll(".section-reveal, .reveal-fade, .reveal-left, .reveal-right, .reveal-scale, .reveal-rotate").forEach((el) => {
       observer.observe(el);
@@ -43,139 +44,50 @@ const Index = () => {
     <main className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <ScrollProgress />
       <Navigation />
-      
-      <AnimatePresence mode="wait">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8 }}
-          >
-            <HeroSection />
-          </motion.div>
 
-          <ParallaxSection speed={0.2}>
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8 }}
-            >
-              <AboutSection />
-            </motion.div>
-          </ParallaxSection>
+      <HeroSection />
 
-          <ParallaxSection speed={0.2}>
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8 }}
-            >
-              <SkillsSection />
-            </motion.div>
-          </ParallaxSection>
+      <motion.div {...sectionAnimation}>
+        <AboutSection />
+      </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8 }}
-          >
-            <ExperienceSection />
-          </motion.div>
+      <motion.div {...sectionAnimation}>
+        <SkillsSection />
+      </motion.div>
 
-          <ParallaxSection speed={0.15}>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8 }}
-            >
-              <ProjectsSection />
-            </motion.div>
-          </ParallaxSection>
+      <motion.div {...sectionAnimation}>
+        <ExperienceSection />
+      </motion.div>
 
-          <ParallaxSection speed={0.3}>
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8 }}
-            >
-              <AchievementsSection />
-            </motion.div>
-          </ParallaxSection>
+      <motion.div {...sectionAnimation}>
+        <ProjectsSection />
+      </motion.div>
 
-          <ParallaxSection speed={0.2}>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8 }}
-            >
-              <CertificatesSection />
-            </motion.div>
-          </ParallaxSection>
+      <motion.div {...sectionAnimation}>
+        <AchievementsSection />
+      </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8 }}
-          >
-            <StartupSection />
-          </motion.div>
+      <motion.div {...sectionAnimation}>
+        <CertificatesSection />
+      </motion.div>
 
-          <ParallaxSection speed={0.25}>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8 }}
-            >
-              <GallerySection />
-            </motion.div>
-          </ParallaxSection>
+      <motion.div {...sectionAnimation}>
+        <StartupSection />
+      </motion.div>
 
-          <ParallaxSection speed={0.15}>
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8 }}
-            >
-              <BlogSection />
-            </motion.div>
-          </ParallaxSection>
+      <motion.div {...sectionAnimation}>
+        <GallerySection />
+      </motion.div>
 
-          <ParallaxSection speed={0.2}>
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8 }}
-            >
-              <ContactSection />
-            </motion.div>
-          </ParallaxSection>
+      <motion.div {...sectionAnimation}>
+        <BlogSection />
+      </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <Footer />
-          </motion.div>
-        </motion.div>
-      </AnimatePresence>
+      <motion.div {...sectionAnimation}>
+        <ContactSection />
+      </motion.div>
+
+      <Footer />
     </main>
   );
 };
