@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
-import { Mail, Linkedin, Instagram, Github, MessageCircle, MapPin, Send, Youtube, Twitter } from "lucide-react";
+import { Mail, Linkedin, Instagram, Github, MessageCircle, MapPin, Send, Youtube, Twitter, Code } from "lucide-react";
 import { use3DTilt } from "@/hooks/use3DTilt";
 import { motion } from "framer-motion";
 
