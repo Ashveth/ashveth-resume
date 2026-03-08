@@ -13,6 +13,11 @@ import pdfsizefixTools from "@/assets/pdfsizefix-tools.png";
 import pdfsizefixAbout from "@/assets/pdfsizefix-about.png";
 import pdfsizefixHumanizer from "@/assets/pdfsizefix-humanizer.png";
 
+const TiltImage = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
+  const ref = use3DTilt({ maxTilt: 6, scale: 1.02 });
+  return <div ref={ref} className={className} style={{ transformStyle: "preserve-3d" }}>{children}</div>;
+};
+
 const galleryItems = [
   { id: 1, src: smartIndiaCert, title: "Smart India AI Agent Hackathon 2025", category: "Winner Certificate", description: "Certificate of Participation - Smart India AI Agent Hackathon organized by AshnaAI" },
   { id: 2, src: uxcelerateCert, title: "UXccelerate VibeHack 2025", category: "Certificate of Excellence", description: "Stayhub Project - User-centric design and innovation" },
