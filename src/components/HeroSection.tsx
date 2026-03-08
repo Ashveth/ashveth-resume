@@ -195,10 +195,7 @@ const HeroSection = () => {
               onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
               className="group relative rounded-full px-8 h-12 text-sm font-medium border-primary/40 text-primary hover:bg-primary hover:text-primary-foreground hover:border-primary hover:scale-105 transition-all duration-300 overflow-hidden"
             >
-              <span className="relative z-10 flex items-center gap-2">
-                Get in Touch
-                <span className="inline-block w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-              </span>
+              Get in Touch
             </Button>
           </motion.div>
         </motion.div>
