@@ -5,6 +5,15 @@ import { X, ChevronLeft, ChevronRight, ExternalLink, Eye } from "lucide-react";
 import smartIndiaCert from "@/assets/smart-india-certificate.png";
 import uxcelerateCert from "@/assets/uxccelerate-certificate.png";
 import buildathonCert from "@/assets/buildathon-certificate.png";
+import buildathonFoundation from "@/assets/certs/buildathon.jpg";
+import codeForImpact from "@/assets/certs/code-for-impact.jpg";
+import grizzlyHacks from "@/assets/certs/grizzly-hacks.jpg";
+import hackEarth2026 from "@/assets/certs/hack-earth-2026.jpg";
+import horizonHacks from "@/assets/certs/horizon-hacks.jpg";
+import mumbaiHacks from "@/assets/certs/mumbai-hacks.jpg";
+import studentHackpad from "@/assets/certs/student-hackpad.jpg";
+import techrushHackathon from "@/assets/certs/techrush-hackathon.jpg";
+import wicsHackathon from "@/assets/certs/wics-hackathon.jpg";
 
 const certificates = [
   {
@@ -32,6 +41,79 @@ const certificates = [
     image: buildathonCert,
     description: "Certificate of Participation — Nov 7–10, 2025.",
     verifyUrl: "https://verification.givemycertificate.com/vibe012a29-328d-40ed-b9b4-0746d91c1443",
+  },
+  {
+    id: 4,
+    title: "Hack-Earth 2026 — Finalist",
+    organization: "Hack-Earth Global",
+    date: "January–February 2026",
+    image: hackEarth2026,
+    description: "Certification for Finalists — CivicPulse project, 48-hour hackathon.",
+  },
+  {
+    id: 5,
+    title: "Grizzly Hacks — 1st Place",
+    organization: "Grizzly Hacks",
+    date: "2025",
+    image: grizzlyHacks,
+    description: "Certificate of Completion — 1st place for creating StudySphere.",
+  },
+  {
+    id: 6,
+    title: "MumbaiHacks 2025",
+    organization: "Tech Entrepreneurs Association of Mumbai",
+    date: "November 2025",
+    image: mumbaiHacks,
+    description: "Participation in the largest Agentic AI hackathon, Nov 28–29.",
+  },
+  {
+    id: 7,
+    title: "Code for Impact Hackathon 2025",
+    organization: "Code for Impact",
+    date: "December 2025",
+    image: codeForImpact,
+    description: "Certificate of Participation — Hackathon for young people, Dec 5–7.",
+  },
+  {
+    id: 8,
+    title: "GDG MGMCET TechRush Hackathon",
+    organization: "Google Developer Groups On Campus",
+    date: "January 2026",
+    image: techrushHackathon,
+    description: "Certificate of Appreciation — Active participation & dedication.",
+  },
+  {
+    id: 9,
+    title: "Student HackPad 2025",
+    organization: "Student HackPad",
+    date: "November 2025",
+    image: studentHackpad,
+    description: "Certificate of Achievement — Demonstrating coding excellence.",
+  },
+  {
+    id: 10,
+    title: "Horizon Hacks 2025",
+    organization: "Stem For Tomorrow",
+    date: "2025",
+    image: horizonHacks,
+    description: "Certificate of Participation — Horizon Hacks Hackathon.",
+  },
+  {
+    id: 11,
+    title: "WiCS Online Hackathon 2026",
+    organization: "Women in Computer Science Club @ De Anza College",
+    date: "2026",
+    image: wicsHackathon,
+    description: "Certificate of Participation — Social Impact and Education tracks.",
+  },
+  {
+    id: 12,
+    title: "Buildathon Foundation Hackathon",
+    organization: "The Buildathon Foundation",
+    date: "November 2025",
+    image: buildathonFoundation,
+    description: "Certificate of Participation — Creativity, teamwork & problem-solving.",
+    verifyUrl: "https://verification.givemycertificate.com/v/be012a29-328d-40ed-b9b4-0746d91c1443",
   },
 ];
 
