@@ -10,6 +10,7 @@ import SkillsSection from "@/components/SkillsSection";
 import ExperienceSection from "@/components/ExperienceSection";
 import BlogSection from "@/components/BlogSection";
 import ContactSection from "@/components/ContactSection";
+import CertificatesSection from "@/components/CertificatesSection";
 import GallerySection from "@/components/GallerySection";
 import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
