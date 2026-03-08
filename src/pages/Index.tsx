@@ -69,6 +69,8 @@ const Index = () => {
           <AboutSection />
         </CinematicSection>
 
+        <StatsCounter />
+
         <CinematicSection parallaxIntensity={25} scaleRange={[0.97, 1]} rotateRange={[0.5, 0]}>
           <SkillsSection />
         </CinematicSection>
