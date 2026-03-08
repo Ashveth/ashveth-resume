@@ -65,15 +65,15 @@ const AboutSection = () => {
                     <h3 className="text-2xl font-display font-semibold mb-4 tracking-tight">Ashveth Maruti Pawar</h3>
                     <p className="text-foreground/70 leading-relaxed">
                       I'm a passionate tech enthusiast and second-year Computer Engineering student 
-                      at Mahatma Gandhi Mission College of Engineering, Navi Mumbai. I thrive 
-                      on solving real-world problems through AI, product design, and creative coding.
+                      at MGM College of Engineering & Technology, Navi Mumbai. I thrive 
+                      on solving real-world problems through AI, full-stack development, and creative digital tools.
                     </p>
                   </div>
                 </motion.div>
                 <motion.p variants={fadeSlide} className="text-foreground/70 leading-relaxed pl-[60px]">
-                  My journey includes building AI agents, developing UX-focused platforms, and co-founding a startup 
-                  that helps creators with websites and content. I aim to use technology to build human-centered, 
-                  impactful solutions.
+                  My journey spans building 10+ AI-powered projects, winning hackathons like Grizzly Hacks (1st place) and Smart India AI Agent Hackathon, 
+                  and founding <strong className="text-foreground">PdfSizeFix</strong> — a free all-in-one online utility platform. I also co-founded <strong className="text-foreground">Curloft</strong>, 
+                  a creative startup helping creators build their digital presence. I believe in building tools that are simple, accessible, and impactful.
                 </motion.p>
               </motion.div>
 
@@ -108,9 +108,9 @@ const AboutSection = () => {
             className="grid md:grid-cols-3 gap-6"
           >
             {[
-              { icon: Award, title: "Hackathon Winner", desc: "Winner of Smart India AI Agent Hackathon 2025 and multiple competitions" },
-              { icon: Code, title: "AI Innovator", desc: "Built 6+ AI agents solving real-world problems in agriculture, education, and healthcare" },
-              { icon: BookOpen, title: "Student & Entrepreneur", desc: "B.Tech in Computer Engineering, Co-founder at Curloft" },
+              { icon: Award, title: "Hackathon Champion", desc: "1st place at Grizzly Hacks, Hack-Earth 2026 Finalist, 12+ hackathon certificates worldwide" },
+              { icon: Code, title: "Builder & Innovator", desc: "10+ AI projects across EdTech, HealthTech, FinTech, Defense AI & Civic Tech with live deployments" },
+              { icon: BookOpen, title: "Founder & Student", desc: "Founder of PdfSizeFix, Co-founder at Curloft, B.Tech Computer Engineering at MGMCET" },
             ].map((item) => (
               <motion.div key={item.title} variants={fadeSlide}>
                 <TiltCard className="glass-card-hover p-6 h-full">
