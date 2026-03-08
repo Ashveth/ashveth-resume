@@ -94,6 +94,10 @@ const Index = () => {
           <BlogSection />
         </CinematicSection>
 
+        <CinematicSection parallaxIntensity={30} scaleRange={[0.95, 1]} rotateRange={[0.8, 0]}>
+          <VideoShowcase />
+        </CinematicSection>
+
         <CinematicSection parallaxIntensity={15} scaleRange={[0.98, 1]} rotateRange={[0.3, 0]}>
           <ContactSection />
         </CinematicSection>
