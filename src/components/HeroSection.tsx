@@ -117,7 +117,7 @@ const HeroSection = () => {
             variants={textReveal}
             className="text-base md:text-lg text-muted-foreground/70 mb-14 max-w-2xl mx-auto"
           >
-            Computer Engineering Student · Hackathon Winner · Co-founder at Curloft
+            Computer Engineering Student · Hackathon Winner · Founder of <a href="https://www.pdfsizefix.in/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">PdfSizeFix.in</a> · Co-founder at Curloft
           </motion.p>
 
           <motion.div
