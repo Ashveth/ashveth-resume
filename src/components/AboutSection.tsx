@@ -108,9 +108,9 @@ const AboutSection = () => {
             className="grid md:grid-cols-3 gap-6"
           >
             {[
-              { icon: Award, title: "Hackathon Winner", desc: "Winner of Smart India AI Agent Hackathon 2025 and multiple competitions" },
-              { icon: Code, title: "AI Innovator", desc: "Built 6+ AI agents solving real-world problems in agriculture, education, and healthcare" },
-              { icon: BookOpen, title: "Student & Entrepreneur", desc: "B.Tech in Computer Engineering, Co-founder at Curloft" },
+              { icon: Award, title: "Hackathon Champion", desc: "1st place at Grizzly Hacks, Hack-Earth 2026 Finalist, 12+ hackathon certificates worldwide" },
+              { icon: Code, title: "Builder & Innovator", desc: "10+ AI projects across EdTech, HealthTech, FinTech, Defense AI & Civic Tech with live deployments" },
+              { icon: BookOpen, title: "Founder & Student", desc: "Founder of PdfSizeFix, Co-founder at Curloft, B.Tech Computer Engineering at MGMCET" },
             ].map((item) => (
               <motion.div key={item.title} variants={fadeSlide}>
                 <TiltCard className="glass-card-hover p-6 h-full">
