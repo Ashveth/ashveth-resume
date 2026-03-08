@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
-import { Mail, Linkedin, Instagram, Github, MessageCircle, MapPin, Send, Youtube, Twitter } from "lucide-react";
+import { Mail, Linkedin, Instagram, Github, MessageCircle, MapPin, Send, Youtube, Twitter, Code } from "lucide-react";
 import { use3DTilt } from "@/hooks/use3DTilt";
 import { motion } from "framer-motion";
 
@@ -35,6 +35,7 @@ const ContactSection = () => {
     { icon: Youtube, label: "YouTube", value: "@AshvethPawar", href: "http://www.youtube.com/@AshvethPawar-gf4yy", color: "text-red-500" },
     { icon: Twitter, label: "X (Twitter)", value: "@Ashveth_pawar", href: "https://x.com/Ashveth_pawar", color: "text-sky-400" },
     { icon: MessageCircle, label: "WhatsApp", value: "+91 93224 68982", href: "https://wa.me/919322468982", color: "text-green-400" },
+    { icon: Code, label: "Devpost", value: "ashveth_pawar", href: "https://devpost.com/ashveth_pawar?ref_content=user-portfolio&ref_feature=portfolio&ref_medium=global-nav", color: "text-cyan-400" },
     { icon: MapPin, label: "Location", value: "Navi Mumbai, Maharashtra", href: "#", color: "text-orange-400" },
   ];
 
