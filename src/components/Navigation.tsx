@@ -85,14 +85,7 @@ const Navigation = () => {
             </div>
 
             {/* Theme Toggle */}
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsDark(!isDark)}
-              className="rounded-full w-9 h-9 text-muted-foreground hover:text-foreground"
-            >
-              {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-            </Button>
+            <ThemeToggle isDark={isDark} onToggle={() => setIsDark(!isDark)} />
 
             {/* Mobile */}
             <Button

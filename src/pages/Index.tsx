@@ -52,6 +52,7 @@ const Index = () => {
 
   return (
     <main className="min-h-screen bg-background text-foreground overflow-x-hidden relative">
+      <CustomCursor />
       {/* Global backgrounds */}
       <div className="hidden dark:block">
         <FloatingScene3D />

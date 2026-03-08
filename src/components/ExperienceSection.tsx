@@ -1,26 +1,13 @@
 import { useState } from "react";
 import { Briefcase, Code, FileText, ExternalLink, Image, X, ChevronLeft, ChevronRight } from "lucide-react";
-import { use3DTilt } from "@/hooks/use3DTilt";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { useRef } from "react";
 import pdfsizefixHero from "@/assets/pdfsizefix-hero.png";
 import pdfsizefixTools from "@/assets/pdfsizefix-tools.png";
 import pdfsizefixAbout from "@/assets/pdfsizefix-about.png";
 import pdfsizefixHumanizer from "@/assets/pdfsizefix-humanizer.png";
-
-const TiltCard = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
-  const ref = use3DTilt({ maxTilt: 4, scale: 1.01 });
-  return <div ref={ref} className={className} style={{ transformStyle: "preserve-3d" }}>{children}</div>;
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, x: -60, rotateY: 5 },
-  visible: (i: number) => ({
-    opacity: 1, x: 0, rotateY: 0,
-    transition: { delay: i * 0.15, duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] },
-  }),
-};
 
 interface Experience {
   icon: React.ElementType;
@@ -54,15 +41,141 @@ const experiences: Experience[] = [
     link: "https://curloft.com/",
   },
   {
-    icon: Code, title: "Student Developer", company: "Mahatma Gandhi Mission's College of Engineering and Technology", period: "2024 – Present",
+    icon: Code, title: "Student Developer", company: "MGM's College of Engineering and Technology", period: "2024 – Present",
     description: "Pursuing B.Tech in Computer Engineering. Active in hackathons, AI projects, and technical communities.",
     color: "text-blue-400", bgColor: "bg-blue-400/10",
   },
 ];
 
-const ExperienceSection = () => {
-  const [photoViewer, setPhotoViewer] = useState<{ photos: { src: string; title: string }[]; index: number } | null>(null);
+const TimelineNode = ({ exp, index, isLast }: { exp: Experience; index: number; isLast: boolean }) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start 0.8", "start 0.3"],
+  });
+  const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
+  return (
+    <div ref={ref} className="relative flex gap-6 md:gap-10">
+      {/* Timeline line & dot */}
+      <div className="flex flex-col items-center flex-shrink-0">
+        <motion.div
+          initial={{ scale: 0 }}
+          whileInView={{ scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: index * 0.15, duration: 0.5, type: "spring" }}
+          className="relative z-10"
+        >
+          <div className={`w-12 h-12 rounded-2xl ${exp.bgColor} flex items-center justify-center border border-border/30 shadow-lg`}>
+            <exp.icon className={`w-5 h-5 ${exp.color}`} />
+          </div>
+          {/* Pulse ring */}
+          <motion.div
+            className={`absolute inset-0 rounded-2xl ${exp.bgColor} -z-10`}
+            animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
+            transition={{ duration: 3, repeat: Infinity, delay: index * 0.5 }}
+          />
+        </motion.div>
+        {/* Connecting line */}
+        {!isLast && (
+          <div className="relative w-[2px] flex-1 min-h-[40px] bg-border/20 mt-3">
+            <motion.div
+              className="absolute top-0 left-0 w-full bg-gradient-to-b from-primary/60 to-primary/10 rounded-full"
+              style={{ height: lineHeight }}
+            />
+          </div>
+        )}
+      </div>
+
+      {/* Content card */}
+      <motion.div
+        initial={{ opacity: 0, x: 40, filter: "blur(6px)" }}
+        whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+        viewport={{ once: true, margin: "-40px" }}
+        transition={{ delay: index * 0.15, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+        className="glass-card-hover p-6 md:p-8 flex-1 mb-8 group"
+      >
+        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-2">
+          <h3 className="text-xl font-display font-semibold tracking-tight group-hover:text-primary transition-colors duration-300">
+            {exp.title}
+          </h3>
+          <span className="text-xs text-primary font-medium tracking-wide whitespace-nowrap px-3 py-1 rounded-full bg-primary/10">
+            {exp.period}
+          </span>
+        </div>
+        <h4 className="text-sm text-muted-foreground font-medium mb-3">{exp.company}</h4>
+        <p className="text-foreground/60 leading-relaxed text-sm mb-4">{exp.description}</p>
+
+        {(exp.link || exp.photos) && (
+          <div className="flex flex-wrap gap-3">
+            {exp.link && (
+              <Button asChild size="sm" variant="outline" className="rounded-full group/btn">
+                <a href={exp.link} target="_blank" rel="noopener noreferrer">
+                  <ExternalLink className="w-3.5 h-3.5 mr-2 group-hover/btn:rotate-12 transition-transform" />
+                  Open Website
+                </a>
+              </Button>
+            )}
+            {exp.photos && exp.photos.length > 0 && (
+              <PhotoViewerButton photos={exp.photos} />
+            )}
+          </div>
+        )}
+      </motion.div>
+    </div>
+  );
+};
+
+const PhotoViewerButton = ({ photos }: { photos: { src: string; title: string }[] }) => {
+  const [viewer, setViewer] = useState<number | null>(null);
+  return (
+    <>
+      <Button
+        size="sm" variant="outline" className="rounded-full group/btn"
+        onClick={() => setViewer(0)}
+      >
+        <Image className="w-3.5 h-3.5 mr-2 group-hover/btn:scale-110 transition-transform" />
+        See Photos ({photos.length})
+      </Button>
+      <AnimatePresence>
+        {viewer !== null && (
+          <Dialog open onOpenChange={() => setViewer(null)}>
+            <DialogContent className="max-w-7xl w-full h-[90vh] p-0 bg-background/95 backdrop-blur-xl border-border/20 rounded-3xl">
+              <button onClick={() => setViewer(null)} className="absolute top-4 right-4 z-50 p-2 rounded-full bg-muted/60 backdrop-blur-sm hover:bg-muted transition-all hover:scale-105">
+                <X className="w-6 h-6" />
+              </button>
+              <div className="relative w-full h-full flex items-center justify-center p-8">
+                <button
+                  onClick={(e) => { e.stopPropagation(); setViewer(viewer === 0 ? photos.length - 1 : viewer - 1); }}
+                  className="absolute left-4 z-50 p-3 rounded-full bg-muted/60 backdrop-blur-sm hover:bg-muted transition-all hover:scale-110"
+                >
+                  <ChevronLeft className="w-6 h-6" />
+                </button>
+                <motion.div key={viewer} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }} transition={{ duration: 0.4 }} className="flex flex-col items-center justify-center max-h-full">
+                  <img src={photos[viewer].src} alt={photos[viewer].title} className="max-w-full max-h-[70vh] object-contain rounded-2xl shadow-xl" />
+                  <p className="mt-4 text-lg font-display font-semibold">{photos[viewer].title}</p>
+                </motion.div>
+                <button
+                  onClick={(e) => { e.stopPropagation(); setViewer(viewer === photos.length - 1 ? 0 : viewer + 1); }}
+                  className="absolute right-4 z-50 p-3 rounded-full bg-muted/60 backdrop-blur-sm hover:bg-muted transition-all hover:scale-110"
+                >
+                  <ChevronRight className="w-6 h-6" />
+                </button>
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                  {photos.map((_, i) => (
+                    <button key={i} onClick={() => setViewer(i)} className={`h-1.5 rounded-full transition-all ${i === viewer ? "bg-primary w-8" : "bg-muted-foreground/30 w-1.5"}`} />
+                  ))}
+                </div>
+              </div>
+            </DialogContent>
+          </Dialog>
+        )}
+      </AnimatePresence>
+    </>
+  );
+};
+
+const ExperienceSection = () => {
   return (
     <section id="experience" className="py-32 relative overflow-hidden">
       <div className="container mx-auto px-4 lg:px-8 max-w-5xl relative z-10">
@@ -80,110 +193,12 @@ const ExperienceSection = () => {
           <div className="section-divider" />
         </motion.div>
 
-        <div className="max-w-4xl mx-auto space-y-6" style={{ perspective: "1200px" }}>
+        <div className="max-w-3xl mx-auto pl-2 md:pl-0">
           {experiences.map((exp, index) => (
-            <motion.div
-              key={index}
-              custom={index}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-40px" }}
-              variants={cardVariants}
-            >
-              <TiltCard className="glass-card-hover p-6 md:p-8 group">
-                <div className="flex flex-col sm:flex-row gap-6">
-                  <div className={`w-14 h-14 rounded-2xl ${exp.bgColor} flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500`}>
-                    <exp.icon className={`w-7 h-7 ${exp.color}`} />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-2">
-                      <h3 className="text-xl font-display font-semibold tracking-tight">{exp.title}</h3>
-                      <span className="text-xs text-primary font-medium tracking-wide">{exp.period}</span>
-                    </div>
-                    <h4 className="text-sm text-muted-foreground font-medium mb-3">{exp.company}</h4>
-                    <p className="text-foreground/60 leading-relaxed text-sm mb-4">{exp.description}</p>
-
-                    {(exp.link || exp.photos) && (
-                      <div className="flex flex-wrap gap-3">
-                        {exp.link && (
-                          <Button asChild size="sm" variant="outline" className="rounded-full group/btn">
-                            <a href={exp.link} target="_blank" rel="noopener noreferrer">
-                              <ExternalLink className="w-3.5 h-3.5 mr-2 group-hover/btn:rotate-12 transition-transform" />
-                              Open Website
-                            </a>
-                          </Button>
-                        )}
-                        {exp.photos && exp.photos.length > 0 && (
-                          <Button
-                            size="sm"
-                            variant="outline"
-                            className="rounded-full group/btn"
-                            onClick={() => setPhotoViewer({ photos: exp.photos!, index: 0 })}
-                          >
-                            <Image className="w-3.5 h-3.5 mr-2 group-hover/btn:scale-110 transition-transform" />
-                            See Photos ({exp.photos.length})
-                          </Button>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </TiltCard>
-            </motion.div>
+            <TimelineNode key={index} exp={exp} index={index} isLast={index === experiences.length - 1} />
           ))}
         </div>
       </div>
-
-      {/* Photo Viewer Lightbox */}
-      <AnimatePresence>
-        {photoViewer && (
-          <Dialog open onOpenChange={() => setPhotoViewer(null)}>
-            <DialogContent className="max-w-7xl w-full h-[90vh] p-0 bg-background/95 backdrop-blur-xl border-border/20 rounded-3xl">
-              <button onClick={() => setPhotoViewer(null)} className="absolute top-4 right-4 z-50 p-2 rounded-full bg-muted/60 backdrop-blur-sm hover:bg-muted transition-all hover:scale-105">
-                <X className="w-6 h-6" />
-              </button>
-
-              <div className="relative w-full h-full flex items-center justify-center p-8">
-                <button
-                  onClick={(e) => { e.stopPropagation(); setPhotoViewer({ ...photoViewer, index: photoViewer.index === 0 ? photoViewer.photos.length - 1 : photoViewer.index - 1 }); }}
-                  className="absolute left-4 z-50 p-3 rounded-full bg-muted/60 backdrop-blur-sm hover:bg-muted transition-all hover:scale-110"
-                >
-                  <ChevronLeft className="w-6 h-6" />
-                </button>
-
-                <motion.div
-                  key={photoViewer.index}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.4 }}
-                  className="flex flex-col items-center justify-center max-h-full"
-                >
-                  <img
-                    src={photoViewer.photos[photoViewer.index].src}
-                    alt={photoViewer.photos[photoViewer.index].title}
-                    className="max-w-full max-h-[70vh] object-contain rounded-2xl shadow-xl"
-                  />
-                  <p className="mt-4 text-lg font-display font-semibold">{photoViewer.photos[photoViewer.index].title}</p>
-                </motion.div>
-
-                <button
-                  onClick={(e) => { e.stopPropagation(); setPhotoViewer({ ...photoViewer, index: photoViewer.index === photoViewer.photos.length - 1 ? 0 : photoViewer.index + 1 }); }}
-                  className="absolute right-4 z-50 p-3 rounded-full bg-muted/60 backdrop-blur-sm hover:bg-muted transition-all hover:scale-110"
-                >
-                  <ChevronRight className="w-6 h-6" />
-                </button>
-
-                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-                  {photoViewer.photos.map((_, i) => (
-                    <button key={i} onClick={() => setPhotoViewer({ ...photoViewer, index: i })} className={`h-1.5 rounded-full transition-all ${i === photoViewer.index ? "bg-primary w-8" : "bg-muted-foreground/30 w-1.5"}`} />
-                  ))}
-                </div>
-              </div>
-            </DialogContent>
-          </Dialog>
-        )}
-      </AnimatePresence>
     </section>
   );
 };
