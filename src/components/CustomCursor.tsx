@@ -59,9 +59,9 @@ const CustomCursor = () => {
         <motion.div
           className="-translate-x-1/2 -translate-y-1/2 rounded-full"
           animate={{
-            width: isHovering ? 280 : 200,
-            height: isHovering ? 280 : 200,
-            opacity: isClicking ? 0.18 : isHovering ? 0.12 : 0.07,
+            width: isHovering ? 400 : 300,
+            height: isHovering ? 400 : 300,
+            opacity: isClicking ? 0.22 : isHovering ? 0.16 : 0.1,
           }}
           transition={{ type: "spring", damping: 20, stiffness: 200 }}
           style={{
