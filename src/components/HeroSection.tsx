@@ -44,6 +44,7 @@ const useTypewriter = (texts: string[], typingSpeed = 60, deletingSpeed = 40, pa
 const HeroSection = () => {
   const mouse = useMouseParallax(30);
   const sectionRef = useRef<HTMLElement>(null);
+  const typewriterText = useTypewriter(titles);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
