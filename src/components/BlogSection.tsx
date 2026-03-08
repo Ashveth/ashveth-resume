@@ -3,16 +3,8 @@ import { motion } from "framer-motion";
 import { Calendar, Clock, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { use3DTilt } from "@/hooks/use3DTilt";
-
-interface BlogPost {
-  id: number;
-  title: string;
-  excerpt: string;
-  date: string;
-  readTime: string;
-  category: string;
-  image: string;
-}
+import { Link } from "react-router-dom";
+import { blogPosts } from "@/data/blogPosts";
 
 const TiltCard = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const ref = use3DTilt({ maxTilt: 5, scale: 1.02 });
@@ -32,15 +24,6 @@ const cardVariants = {
 const BlogSection = () => {
   const [hoveredId, setHoveredId] = useState<number | null>(null);
 
-  const blogPosts: BlogPost[] = [
-    { id: 1, title: "Why I Built PDF Size Fix — A Free All-in-One Utility Platform", excerpt: "Solving everyday PDF and utility problems in a simple, fast, and privacy-focused way — without ads overload or complicated steps.", date: "March 2026", readTime: "6 min read", category: "Startup", image: "https://images.unsplash.com/photo-1618044733300-9472054094ee?w=800&h=400&fit=crop" },
-    { id: 2, title: "Winning the Smart India AI Agent Hackathon 2025", excerpt: "An incredible journey of building AshnaAI and competing with brilliant minds.", date: "November 2025", readTime: "5 min read", category: "Hackathon", image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=400&fit=crop" },
-    { id: 3, title: "Building AI Agents: A Comprehensive Guide", excerpt: "From KrishiMitra to TripGenie, I've built 6 AI agents. Learn about the architecture and best practices.", date: "October 2025", readTime: "8 min read", category: "AI Development", image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=400&fit=crop" },
-    { id: 4, title: "UX Design Meets AI: Lessons from VibeHack 2025", excerpt: "How we designed Stayhub using UXccelerate.ai, focusing on user-centric design.", date: "October 2025", readTime: "6 min read", category: "UX Design", image: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=800&h=400&fit=crop" },
-    { id: 5, title: "The Future of AI in Healthcare: HealthMate Journey", excerpt: "Exploring multilingual AI solutions for healthcare accessibility.", date: "September 2025", readTime: "7 min read", category: "Healthcare AI", image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=400&fit=crop" },
-    { id: 6, title: "Insights from LocalHost AI Film Festival 2025", excerpt: "Key takeaways from industry experts on the intersection of AI and creative content.", date: "September 2025", readTime: "4 min read", category: "Events", image: "https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=800&h=400&fit=crop" },
-    { id: 7, title: "From Idea to Startup: The Curloft Story", excerpt: "Lessons learned about entrepreneurship, design, and building in public.", date: "August 2025", readTime: "6 min read", category: "Startup", image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=400&fit=crop" },
-  ];
 
   return (
     <section id="blog" className="py-32 relative overflow-hidden">
@@ -115,13 +98,15 @@ const BlogSection = () => {
                       {post.excerpt}
                     </p>
 
-                    <Button
-                      variant="ghost"
-                      className="group/btn p-0 h-auto font-medium text-sm md:text-base text-primary hover:text-primary hover:bg-transparent"
-                    >
-                      Read More
-                      <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                    </Button>
+                    <Link to={`/blog/${post.slug}`}>
+                      <Button
+                        variant="ghost"
+                        className="group/btn p-0 h-auto font-medium text-sm md:text-base text-primary hover:text-primary hover:bg-transparent"
+                      >
+                        Read More
+                        <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                      </Button>
+                    </Link>
                   </div>
                 </article>
               </TiltCard>
