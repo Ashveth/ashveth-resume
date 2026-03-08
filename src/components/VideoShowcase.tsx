@@ -2,21 +2,26 @@ import { useState, useRef, useCallback, useEffect } from "react";
 import { motion, AnimatePresence, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
 import { Play, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { use3DTilt } from "@/hooks/use3DTilt";
+import aiHealthmateThumbnail from "@/assets/thumbnails/ai-healthmate.png";
+import campusgreenThumbnail from "@/assets/thumbnails/campusgreen.png";
+import civicpulseThumbnail from "@/assets/thumbnails/civicpulse.png";
+import peerbridgeThumbnail from "@/assets/thumbnails/peerbridge.png";
+import swipeforumThumbnail from "@/assets/thumbnails/swipeforum.png";
 
 const videos = [
   { id: "DDlHdg0ofME", title: "VidyaSetu", description: "AI-powered personalized learning platform for students in Tier-2/3 cities", category: "EdTech" },
   { id: "mP6VhpShqgA", title: "EduGrant AI", description: "Smart scholarship and education grant matching platform", category: "EdTech" },
   { id: "M8Ub-iRXPPU", title: "Idea Navigator", description: "AI startup idea validator with market analysis and roadmap generation", category: "AI Tool" },
-  { id: "N6nCmfM-6SQ", title: "CampusGreen 🌱", description: "AI-powered sustainability ecosystem for college campuses with gamification", category: "Sustainability" },
-  { id: "PvH_qNbDr9o", title: "Swipe Forum", description: "TikTok-style swipeable community discussion forum", category: "Social" },
-  { id: "_ArEMrikBmQ", title: "CivicPulse", description: "Community-driven platform to report, track, and resolve local civic issues", category: "Civic Tech" },
-  { id: "klRBP9jMRzc", title: "PeerBridge Atlas", description: "Peer-to-peer learning and mentorship mapping platform", category: "EdTech" },
+  { id: "N6nCmfM-6SQ", title: "CampusGreen 🌱", description: "AI-powered sustainability ecosystem for college campuses with gamification", category: "Sustainability", thumbnail: campusgreenThumbnail },
+  { id: "PvH_qNbDr9o", title: "Swipe Forum", description: "TikTok-style swipeable community discussion forum", category: "Social", thumbnail: swipeforumThumbnail },
+  { id: "_ArEMrikBmQ", title: "CivicPulse", description: "Community-driven platform to report, track, and resolve local civic issues", category: "Civic Tech", thumbnail: civicpulseThumbnail },
+  { id: "klRBP9jMRzc", title: "PeerBridge Atlas", description: "Peer-to-peer learning and mentorship mapping platform", category: "EdTech", thumbnail: peerbridgeThumbnail },
   { id: "pBEc_qVPIQM", title: "Siliguri Border AI", description: "AI-powered predictive surveillance system for India's strategic corridor", category: "Defense AI" },
   { id: "Areq0u7pQhc", title: "AI Shield for Siliguri", description: "Predict, detect, and protect — AI defense demo video", category: "Defense AI" },
   { id: "JoAmVrQo3QQ", title: "Savoney", description: "Smart finance management app — Mumbai Hacks hackathon project", category: "FinTech" },
-  { id: "MvbbQbFw0ak", title: "AI HealthMate ChatBot", description: "Multilingual AI health assistant with symptom analysis", category: "HealthTech" },
+  { id: "MvbbQbFw0ak", title: "AI HealthMate ChatBot", description: "Multilingual AI health assistant with symptom analysis", category: "HealthTech", thumbnail: aiHealthmateThumbnail },
   { id: "jib28LbuXUM", title: "StudySphere", description: "Collaborative student workspace for hackathon productivity", category: "EdTech" },
-  { id: "r8ME_kwBRlQ", title: "AI HealthMate", description: "Full-featured AI-powered health companion app demo", category: "HealthTech" },
+  { id: "r8ME_kwBRlQ", title: "AI HealthMate", description: "Full-featured AI-powered health companion app demo", category: "HealthTech", thumbnail: aiHealthmateThumbnail },
   { id: "XvpBPns4evs", title: "Sentiment Shield", description: "AI agent monitoring reviews & social mentions for negative feedback", category: "AI Tool" },
 ];
 
