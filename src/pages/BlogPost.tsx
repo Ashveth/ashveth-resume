@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { ArrowLeft, Calendar, Clock, Tag } from "lucide-react";
 import { blogPosts } from "@/data/blogPosts";
 import { Button } from "@/components/ui/button";
+import DOMPurify from "dompurify";
 
 const BlogPostPage = () => {
   const { slug } = useParams<{ slug: string }>();
