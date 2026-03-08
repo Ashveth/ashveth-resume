@@ -43,13 +43,13 @@ const LightModeBackground = () => {
             className="w-full h-full rounded-full"
             style={{
               background: i % 3 === 0
-                ? "radial-gradient(circle at 30% 30%, rgba(147,197,253,0.15), rgba(196,181,253,0.08), transparent 70%)"
+                ? "radial-gradient(circle at 30% 30%, rgba(56,189,248,0.28), rgba(147,197,253,0.18), rgba(196,181,253,0.1) 60%, transparent 80%)"
                 : i % 3 === 1
-                ? "radial-gradient(circle at 40% 40%, rgba(165,180,252,0.12), rgba(147,197,253,0.06), transparent 70%)"
-                : "radial-gradient(circle at 35% 35%, rgba(196,181,253,0.1), rgba(165,180,252,0.05), transparent 70%)",
-              backdropFilter: "blur(1px)",
-              border: "1px solid rgba(148,163,184,0.06)",
-              boxShadow: "inset 0 1px 2px rgba(255,255,255,0.3), 0 4px 24px rgba(148,163,184,0.04)",
+                ? "radial-gradient(circle at 40% 40%, rgba(99,179,237,0.25), rgba(129,140,248,0.15), rgba(147,197,253,0.08) 60%, transparent 80%)"
+                : "radial-gradient(circle at 35% 35%, rgba(165,180,252,0.25), rgba(56,189,248,0.15), rgba(196,181,253,0.08) 60%, transparent 80%)",
+              backdropFilter: "blur(8px)",
+              border: "1px solid rgba(148,163,184,0.15)",
+              boxShadow: "inset 0 2px 6px rgba(255,255,255,0.5), inset 0 -1px 3px rgba(148,163,184,0.1), 0 8px 40px rgba(99,179,237,0.1)",
             }}
           />
         </motion.div>
