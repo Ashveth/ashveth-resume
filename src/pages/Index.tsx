@@ -113,6 +113,17 @@ const Index = () => {
             </motion.div>
           </ParallaxSection>
 
+          <ParallaxSection speed={0.2}>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8 }}
+            >
+              <CertificatesSection />
+            </motion.div>
+          </ParallaxSection>
+
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
