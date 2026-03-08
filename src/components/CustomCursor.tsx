@@ -6,14 +6,12 @@ const CustomCursor = () => {
   const cursorY = useMotionValue(0);
   const [isHovering, setIsHovering] = useState(false);
   const [isClicking, setIsClicking] = useState(false);
-  const [cursorText, setCursorText] = useState("");
 
-  const springConfig = { damping: 25, stiffness: 300, mass: 0.5 };
+  const springConfig = { damping: 20, stiffness: 400, mass: 0.3 };
   const x = useSpring(cursorX, springConfig);
   const y = useSpring(cursorY, springConfig);
 
   useEffect(() => {
-    // Hide on touch devices
     if ("ontouchstart" in window) return;
 
     const move = (e: MouseEvent) => {
@@ -23,19 +21,12 @@ const CustomCursor = () => {
 
     const handleOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      const interactive = target.closest("a, button, [role='button'], input, textarea, select, [data-cursor-text]");
-      if (interactive) {
+      if (target.closest("a, button, [role='button'], input, textarea, select")) {
         setIsHovering(true);
-        const text = interactive.getAttribute("data-cursor-text");
-        setCursorText(text || "");
       }
     };
 
-    const handleOut = () => {
-      setIsHovering(false);
-      setCursorText("");
-    };
-
+    const handleOut = () => setIsHovering(false);
     const handleDown = () => setIsClicking(true);
     const handleUp = () => setIsClicking(false);
 
@@ -44,7 +35,6 @@ const CustomCursor = () => {
     window.addEventListener("mouseout", handleOut, { passive: true });
     window.addEventListener("mousedown", handleDown);
     window.addEventListener("mouseup", handleUp);
-
     document.body.style.cursor = "none";
 
     return () => {
@@ -57,51 +47,60 @@ const CustomCursor = () => {
     };
   }, [cursorX, cursorY]);
 
-  // Don't render on touch devices
   if (typeof window !== "undefined" && "ontouchstart" in window) return null;
 
   return (
     <>
-      {/* Outer ring */}
+      {/* Crosshair / diamond cursor */}
       <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[9999] mix-blend-difference"
+        className="fixed top-0 left-0 pointer-events-none z-[9999]"
         style={{ x, y }}
       >
         <motion.div
-          className="relative -translate-x-1/2 -translate-y-1/2 rounded-full border border-foreground/40 flex items-center justify-center"
+          className="relative -translate-x-1/2 -translate-y-1/2"
           animate={{
-            width: isHovering ? 64 : 32,
-            height: isHovering ? 64 : 32,
-            scale: isClicking ? 0.8 : 1,
-            borderColor: isHovering ? "hsl(var(--primary))" : "hsl(var(--foreground) / 0.4)",
+            scale: isClicking ? 0.7 : isHovering ? 1.6 : 1,
+            rotate: isHovering ? 45 : 0,
           }}
-          transition={{ type: "spring", damping: 20, stiffness: 300 }}
+          transition={{ type: "spring", damping: 18, stiffness: 350 }}
         >
-          {cursorText && (
-            <motion.span
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="text-[9px] font-medium text-foreground uppercase tracking-wider"
-            >
-              {cursorText}
-            </motion.span>
-          )}
+          {/* Diamond shape */}
+          <div
+            className="w-5 h-5 border-2 rounded-[4px] rotate-45"
+            style={{
+              borderColor: isHovering ? "hsl(var(--primary))" : "hsl(var(--foreground) / 0.6)",
+              background: isHovering ? "hsl(var(--primary) / 0.1)" : "transparent",
+              transition: "border-color 0.2s, background 0.2s",
+            }}
+          />
+          {/* Center dot */}
+          <motion.div
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
+            animate={{
+              width: isHovering ? 6 : 3,
+              height: isHovering ? 6 : 3,
+              backgroundColor: isHovering ? "hsl(var(--primary))" : "hsl(var(--foreground) / 0.8)",
+            }}
+            transition={{ duration: 0.2 }}
+          />
         </motion.div>
       </motion.div>
 
-      {/* Inner dot */}
-      <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[9999] mix-blend-difference"
-        style={{ x: cursorX, y: cursorY }}
-      >
+      {/* Trailing glow on hover */}
+      {isHovering && (
         <motion.div
-          className="w-1.5 h-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-foreground"
-          animate={{
-            scale: isHovering ? 0 : isClicking ? 2 : 1,
-          }}
-          transition={{ type: "spring", damping: 20, stiffness: 300 }}
-        />
-      </motion.div>
+          className="fixed top-0 left-0 pointer-events-none z-[9998]"
+          style={{ x: cursorX, y: cursorY }}
+        >
+          <motion.div
+            className="w-10 h-10 -translate-x-1/2 -translate-y-1/2 rounded-full"
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 0.15 }}
+            exit={{ scale: 0, opacity: 0 }}
+            style={{ background: "hsl(var(--primary))", filter: "blur(10px)" }}
+          />
+        </motion.div>
+      )}
     </>
   );
 };

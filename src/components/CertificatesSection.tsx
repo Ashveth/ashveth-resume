@@ -106,15 +106,6 @@ const certificates = [
     image: wicsHackathon,
     description: "Certificate of Participation — Social Impact and Education tracks.",
   },
-  {
-    id: 12,
-    title: "Buildathon Foundation Hackathon",
-    organization: "The Buildathon Foundation",
-    date: "November 2025",
-    image: buildathonFoundation,
-    description: "Certificate of Participation — Creativity, teamwork & problem-solving.",
-    verifyUrl: "https://verification.givemycertificate.com/v/be012a29-328d-40ed-b9b4-0746d91c1443",
-  },
 ];
 
 const cardVariants = {
