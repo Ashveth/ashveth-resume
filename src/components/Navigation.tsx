@@ -33,6 +33,7 @@ const Navigation = () => {
     { label: "Projects", href: "#projects" },
     { label: "Achievements", href: "#achievements" },
     { label: "Certificates", href: "#certificates" },
+    { label: "Startups", href: "#startup" },
     { label: "Gallery", href: "#gallery" },
     { label: "Blog", href: "#blog" },
     { label: "Contact", href: "#contact" },
