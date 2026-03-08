@@ -5,16 +5,6 @@ import { motion } from "framer-motion";
 
 const startups = [
   {
-    icon: Rocket,
-    name: "Curloft",
-    role: "Co-founder · Aug 2024 – Present",
-    description:
-      "Curloft is a creative startup that builds websites, blogs, and content for creators and small businesses — blending design, storytelling, and technology to help people establish their digital presence and grow their brand.",
-    link: "https://curloft.com/",
-    linkLabel: "Visit Curloft",
-    gradient: "from-primary to-accent",
-  },
-  {
     icon: FileText,
     name: "PdfSizeFix",
     role: "Founder · All-in-One Online Tools",
@@ -23,6 +13,16 @@ const startups = [
     link: "https://www.pdfsizefix.in/",
     linkLabel: "Visit PdfSizeFix",
     gradient: "from-blue-500 to-cyan-400",
+  },
+  {
+    icon: Rocket,
+    name: "Curloft",
+    role: "Co-founder · Aug 2024 – Present",
+    description:
+      "Curloft is a creative startup that builds websites, blogs, and content for creators and small businesses — blending design, storytelling, and technology to help people establish their digital presence and grow their brand.",
+    link: "https://curloft.com/",
+    linkLabel: "Visit Curloft",
+    gradient: "from-primary to-accent",
   },
 ];
 
