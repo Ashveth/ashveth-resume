@@ -1,12 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { Trophy, Code2, Rocket, Users } from "lucide-react";
+import { Trophy, Code2, Rocket } from "lucide-react";
 
 const stats = [
   { icon: Trophy, value: 9, suffix: "+", label: "Hackathons", color: "text-amber-400" },
   { icon: Code2, value: 11, suffix: "+", label: "AI Projects", color: "text-primary" },
   { icon: Rocket, value: 2, suffix: "", label: "Startups Founded", color: "text-emerald-400" },
-  { icon: Users, value: 5000, suffix: "+", label: "Users Impacted", color: "text-violet-400" },
 ];
 
 const AnimatedNumber = ({ value, suffix, inView }: { value: number; suffix: string; inView: boolean }) => {
@@ -45,7 +44,7 @@ const StatsCounter = () => {
       <div className="container mx-auto px-4 lg:px-8">
         <div
           ref={ref}
-          className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto"
+          className="grid grid-cols-3 gap-6 max-w-4xl mx-auto"
         >
           {stats.map((stat, i) => (
             <motion.div

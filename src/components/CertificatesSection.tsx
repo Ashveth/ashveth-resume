@@ -5,7 +5,7 @@ import { X, ChevronLeft, ChevronRight, ExternalLink, Eye } from "lucide-react";
 import smartIndiaCert from "@/assets/smart-india-certificate.png";
 import uxcelerateCert from "@/assets/uxccelerate-certificate.png";
 import buildathonCert from "@/assets/buildathon-certificate.png";
-import buildathonFoundation from "@/assets/certs/buildathon.jpg";
+
 import codeForImpact from "@/assets/certs/code-for-impact.jpg";
 import grizzlyHacks from "@/assets/certs/grizzly-hacks.jpg";
 import hackEarth2026 from "@/assets/certs/hack-earth-2026.jpg";
@@ -105,15 +105,6 @@ const certificates = [
     date: "2026",
     image: wicsHackathon,
     description: "Certificate of Participation — Social Impact and Education tracks.",
-  },
-  {
-    id: 12,
-    title: "Buildathon Foundation Hackathon",
-    organization: "The Buildathon Foundation",
-    date: "November 2025",
-    image: buildathonFoundation,
-    description: "Certificate of Participation — Creativity, teamwork & problem-solving.",
-    verifyUrl: "https://verification.givemycertificate.com/v/be012a29-328d-40ed-b9b4-0746d91c1443",
   },
 ];
 
