@@ -10,6 +10,7 @@ import SkillsSection from "@/components/SkillsSection";
 import ExperienceSection from "@/components/ExperienceSection";
 import BlogSection from "@/components/BlogSection";
 import ContactSection from "@/components/ContactSection";
+import CertificatesSection from "@/components/CertificatesSection";
 import GallerySection from "@/components/GallerySection";
 import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
@@ -109,6 +110,17 @@ const Index = () => {
               transition={{ duration: 0.8 }}
             >
               <AchievementsSection />
+            </motion.div>
+          </ParallaxSection>
+
+          <ParallaxSection speed={0.2}>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8 }}
+            >
+              <CertificatesSection />
             </motion.div>
           </ParallaxSection>
 
