@@ -3,16 +3,8 @@ import { motion } from "framer-motion";
 import { Calendar, Clock, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { use3DTilt } from "@/hooks/use3DTilt";
-
-interface BlogPost {
-  id: number;
-  title: string;
-  excerpt: string;
-  date: string;
-  readTime: string;
-  category: string;
-  image: string;
-}
+import { Link } from "react-router-dom";
+import { blogPosts } from "@/data/blogPosts";
 
 const TiltCard = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const ref = use3DTilt({ maxTilt: 5, scale: 1.02 });
