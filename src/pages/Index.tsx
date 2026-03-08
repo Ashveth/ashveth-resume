@@ -1,28 +1,34 @@
-import { useEffect } from "react";
-import { motion } from "framer-motion";
+import { useEffect, lazy, Suspense } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/HeroSection";
-import AboutSection from "@/components/AboutSection";
-import AchievementsSection from "@/components/AchievementsSection";
-import ProjectsSection from "@/components/ProjectsSection";
-import StartupSection from "@/components/StartupSection";
-import SkillsSection from "@/components/SkillsSection";
-import ExperienceSection from "@/components/ExperienceSection";
-import BlogSection from "@/components/BlogSection";
-import ContactSection from "@/components/ContactSection";
-import CertificatesSection from "@/components/CertificatesSection";
-import GallerySection from "@/components/GallerySection";
-import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
+import CinematicSection from "@/components/CinematicSection";
+import FloatingScene3D from "@/components/FloatingScene3D";
+import { useLenis } from "@/hooks/useLenis";
 
-const sectionAnimation = {
-  initial: { opacity: 0, y: 40 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-80px" },
-  transition: { duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] },
-};
+// Lazy load heavier sections
+const AboutSection = lazy(() => import("@/components/AboutSection"));
+const SkillsSection = lazy(() => import("@/components/SkillsSection"));
+const ExperienceSection = lazy(() => import("@/components/ExperienceSection"));
+const ProjectsSection = lazy(() => import("@/components/ProjectsSection"));
+const AchievementsSection = lazy(() => import("@/components/AchievementsSection"));
+const CertificatesSection = lazy(() => import("@/components/CertificatesSection"));
+const StartupSection = lazy(() => import("@/components/StartupSection"));
+const GallerySection = lazy(() => import("@/components/GallerySection"));
+const BlogSection = lazy(() => import("@/components/BlogSection"));
+const ContactSection = lazy(() => import("@/components/ContactSection"));
+const Footer = lazy(() => import("@/components/Footer"));
+
+const SectionFallback = () => (
+  <div className="min-h-[40vh] flex items-center justify-center">
+    <div className="w-6 h-6 rounded-full border-2 border-primary border-t-transparent animate-spin" />
+  </div>
+);
 
 const Index = () => {
+  useLenis();
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -30,64 +36,69 @@ const Index = () => {
           if (entry.isIntersecting) entry.target.classList.add("active");
         });
       },
-      { threshold: 0.1, rootMargin: "0px 0px -80px 0px" }
+      { threshold: 0.1, rootMargin: "0px 0px -60px 0px" }
     );
 
-    document.querySelectorAll(".section-reveal, .reveal-fade, .reveal-left, .reveal-right, .reveal-scale, .reveal-rotate").forEach((el) => {
-      observer.observe(el);
-    });
+    document
+      .querySelectorAll(".section-reveal, .reveal-fade, .reveal-left, .reveal-right, .reveal-scale, .reveal-rotate")
+      .forEach((el) => observer.observe(el));
 
     return () => observer.disconnect();
   }, []);
 
   return (
-    <main className="min-h-screen bg-background text-foreground overflow-x-hidden">
+    <main className="min-h-screen bg-background text-foreground overflow-x-hidden relative">
+      {/* Global 3D background */}
+      <FloatingScene3D />
+
       <ScrollProgress />
       <Navigation />
 
       <HeroSection />
 
-      <motion.div {...sectionAnimation}>
-        <AboutSection />
-      </motion.div>
+      <Suspense fallback={<SectionFallback />}>
+        <CinematicSection parallaxIntensity={30} scaleRange={[0.96, 1]} rotateRange={[0.8, 0]}>
+          <AboutSection />
+        </CinematicSection>
 
-      <motion.div {...sectionAnimation}>
-        <SkillsSection />
-      </motion.div>
+        <CinematicSection parallaxIntensity={25} scaleRange={[0.97, 1]} rotateRange={[0.5, 0]}>
+          <SkillsSection />
+        </CinematicSection>
 
-      <motion.div {...sectionAnimation}>
-        <ExperienceSection />
-      </motion.div>
+        <CinematicSection parallaxIntensity={20} scaleRange={[0.97, 1]} rotateRange={[0.6, 0]}>
+          <ExperienceSection />
+        </CinematicSection>
 
-      <motion.div {...sectionAnimation}>
-        <ProjectsSection />
-      </motion.div>
+        <CinematicSection parallaxIntensity={35} scaleRange={[0.95, 1]} rotateRange={[1, 0]}>
+          <ProjectsSection />
+        </CinematicSection>
 
-      <motion.div {...sectionAnimation}>
-        <AchievementsSection />
-      </motion.div>
+        <CinematicSection parallaxIntensity={25} scaleRange={[0.96, 1]} rotateRange={[0.7, 0]}>
+          <AchievementsSection />
+        </CinematicSection>
 
-      <motion.div {...sectionAnimation}>
-        <CertificatesSection />
-      </motion.div>
+        <CinematicSection parallaxIntensity={20} scaleRange={[0.97, 1]} rotateRange={[0.4, 0]}>
+          <CertificatesSection />
+        </CinematicSection>
 
-      <motion.div {...sectionAnimation}>
-        <StartupSection />
-      </motion.div>
+        <CinematicSection parallaxIntensity={30} scaleRange={[0.96, 1]} rotateRange={[0.6, 0]}>
+          <StartupSection />
+        </CinematicSection>
 
-      <motion.div {...sectionAnimation}>
-        <GallerySection />
-      </motion.div>
+        <CinematicSection parallaxIntensity={20} scaleRange={[0.97, 1]} rotateRange={[0.5, 0]}>
+          <GallerySection />
+        </CinematicSection>
 
-      <motion.div {...sectionAnimation}>
-        <BlogSection />
-      </motion.div>
+        <CinematicSection parallaxIntensity={25} scaleRange={[0.96, 1]} rotateRange={[0.6, 0]}>
+          <BlogSection />
+        </CinematicSection>
 
-      <motion.div {...sectionAnimation}>
-        <ContactSection />
-      </motion.div>
+        <CinematicSection parallaxIntensity={15} scaleRange={[0.98, 1]} rotateRange={[0.3, 0]}>
+          <ContactSection />
+        </CinematicSection>
 
-      <Footer />
+        <Footer />
+      </Suspense>
     </main>
   );
 };
