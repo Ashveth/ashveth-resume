@@ -1,74 +1,136 @@
+import { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowDown, Download } from "lucide-react";
 import { useMouseParallax } from "@/hooks/useMouseParallax";
-import ParticleBackground3D from "./ParticleBackground3D";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 const HeroSection = () => {
   const mouse = useMouseParallax(30);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+
+  const heroY = useTransform(scrollYProgress, [0, 1], [0, 200]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
+  const heroScale = useTransform(scrollYProgress, [0, 0.6], [1, 0.9]);
 
   const scrollToAbout = () => {
     document.querySelector("#about")?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const textReveal = {
+    hidden: { opacity: 0, y: 50, filter: "blur(10px)" },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      transition: {
+        delay: i * 0.15,
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94],
+      },
+    }),
+  };
+
   return (
     <section
+      ref={sectionRef}
       id="hero"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      <ParticleBackground3D />
-
-      {/* Ambient orbs */}
-      <div
-        className="absolute w-[600px] h-[600px] rounded-full opacity-20 pointer-events-none animate-pulse-glow"
+      {/* Ambient orbs with parallax */}
+      <motion.div
+        className="absolute w-[700px] h-[700px] rounded-full opacity-20 pointer-events-none"
         style={{
-          background: "radial-gradient(circle, hsl(210 100% 60% / 0.15) 0%, transparent 70%)",
-          top: "20%",
-          left: "10%",
-          transform: `translate(${mouse.x * 0.5}px, ${mouse.y * 0.5}px)`,
-          transition: "transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+          background: "radial-gradient(circle, hsl(var(--primary) / 0.15) 0%, transparent 70%)",
+          top: "15%",
+          left: "5%",
         }}
+        animate={{
+          x: mouse.x * 0.5,
+          y: mouse.y * 0.5,
+          scale: [1, 1.05, 1],
+        }}
+        transition={{ x: { duration: 1.2 }, y: { duration: 1.2 }, scale: { duration: 8, repeat: Infinity } }}
       />
-      <div
-        className="absolute w-[500px] h-[500px] rounded-full opacity-15 pointer-events-none animate-pulse-glow"
+      <motion.div
+        className="absolute w-[500px] h-[500px] rounded-full opacity-15 pointer-events-none"
         style={{
-          background: "radial-gradient(circle, hsl(210 80% 65% / 0.12) 0%, transparent 70%)",
+          background: "radial-gradient(circle, hsl(var(--accent) / 0.12) 0%, transparent 70%)",
           bottom: "10%",
           right: "5%",
-          transform: `translate(${mouse.x * -0.3}px, ${mouse.y * -0.3}px)`,
-          transition: "transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-          animationDelay: "2s",
         }}
+        animate={{
+          x: mouse.x * -0.3,
+          y: mouse.y * -0.3,
+          scale: [1, 1.08, 1],
+        }}
+        transition={{ x: { duration: 1.5 }, y: { duration: 1.5 }, scale: { duration: 10, repeat: Infinity, delay: 2 } }}
       />
 
-      <div className="relative z-10 container mx-auto px-4 lg:px-8 text-center">
-        <div
+      <motion.div
+        style={{ y: heroY, opacity: heroOpacity, scale: heroScale }}
+        className="relative z-10 container mx-auto px-4 lg:px-8 text-center"
+      >
+        <motion.div
           style={{
-            transform: `translate(${mouse.x * -0.15}px, ${mouse.y * -0.15}px)`,
-            transition: "transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+            transform: `translate(${mouse.x * -0.1}px, ${mouse.y * -0.1}px)`,
           }}
         >
-          {/* Eyebrow */}
-          <p className="text-sm tracking-[0.3em] uppercase text-muted-foreground mb-6 animate-fade-in">
+          <motion.p
+            custom={0}
+            initial="hidden"
+            animate="visible"
+            variants={textReveal}
+            className="text-sm tracking-[0.3em] uppercase text-muted-foreground mb-6"
+          >
             Portfolio
-          </p>
+          </motion.p>
 
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-display font-bold mb-8 tracking-tight animate-fade-in">
+          <motion.h1
+            custom={1}
+            initial="hidden"
+            animate="visible"
+            variants={textReveal}
+            className="text-6xl md:text-8xl lg:text-9xl font-display font-bold mb-8 tracking-tight"
+          >
             <span className="gradient-text">Ashveth Pawar</span>
-          </h1>
+          </motion.h1>
 
-          <p className="text-xl md:text-2xl lg:text-3xl text-muted-foreground mb-4 font-light max-w-3xl mx-auto tracking-tight animate-fade-in" style={{ animationDelay: "0.15s" }}>
+          <motion.p
+            custom={2}
+            initial="hidden"
+            animate="visible"
+            variants={textReveal}
+            className="text-xl md:text-2xl lg:text-3xl text-muted-foreground mb-4 font-light max-w-3xl mx-auto tracking-tight"
+          >
             Building the Future with AI & Innovation
-          </p>
+          </motion.p>
 
-          <p className="text-base md:text-lg text-muted-foreground/70 mb-14 max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: "0.3s" }}>
+          <motion.p
+            custom={3}
+            initial="hidden"
+            animate="visible"
+            variants={textReveal}
+            className="text-base md:text-lg text-muted-foreground/70 mb-14 max-w-2xl mx-auto"
+          >
             Computer Engineering Student · Hackathon Winner · Co-founder at Curloft
-          </p>
+          </motion.p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in" style={{ animationDelay: "0.45s" }}>
+          <motion.div
+            custom={4}
+            initial="hidden"
+            animate="visible"
+            variants={textReveal}
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          >
             <Button
               size="lg"
               onClick={scrollToAbout}
-              className="group rounded-full px-8 h-12 text-sm font-medium"
+              className="group rounded-full px-8 h-12 text-sm font-medium hover:scale-105 transition-transform duration-300"
             >
               Explore My Work
               <ArrowDown className="ml-2 w-4 h-4 group-hover:translate-y-1 transition-transform duration-300" />
@@ -77,7 +139,7 @@ const HeroSection = () => {
               size="lg"
               variant="outline"
               asChild
-              className="group rounded-full px-8 h-12 text-sm font-medium"
+              className="group rounded-full px-8 h-12 text-sm font-medium hover:scale-105 transition-transform duration-300"
             >
               <a href="/Ashveth_Pawar_Resume.pdf" download="Ashveth_Pawar_Resume.pdf">
                 Download Resume
@@ -88,19 +150,23 @@ const HeroSection = () => {
               size="lg"
               variant="ghost"
               onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
-              className="rounded-full px-8 h-12 text-sm font-medium text-muted-foreground hover:text-foreground"
+              className="rounded-full px-8 h-12 text-sm font-medium text-muted-foreground hover:text-foreground hover:scale-105 transition-all duration-300"
             >
               Get in Touch
             </Button>
-          </div>
-        </div>
-      </div>
+          </motion.div>
+        </motion.div>
+      </motion.div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+      {/* Animated scroll indicator */}
+      <motion.div
+        className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        animate={{ y: [0, 8, 0] }}
+        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+      >
         <span className="text-xs tracking-widest uppercase text-muted-foreground/40">Scroll</span>
         <div className="w-[1px] h-8 bg-gradient-to-b from-muted-foreground/40 to-transparent" />
-      </div>
+      </motion.div>
     </section>
   );
 };

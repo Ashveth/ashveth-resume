@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Code, Brain, Palette, Server, Wrench } from "lucide-react";
 import { use3DTilt } from "@/hooks/use3DTilt";
+import { motion } from "framer-motion";
 
 const TiltCard = ({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) => {
   const ref = use3DTilt({ maxTilt: 5, scale: 1.015 });
@@ -9,6 +10,16 @@ const TiltCard = ({ children, className = "", delay = 0 }: { children: React.Rea
       {children}
     </div>
   );
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 50, rotateX: 5 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    rotateX: 0,
+    transition: { delay: i * 0.1, duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] },
+  }),
 };
 
 const SkillsSection = () => {
@@ -35,7 +46,13 @@ const SkillsSection = () => {
   return (
     <section id="skills" ref={sectionRef} className="py-32 relative overflow-hidden ambient-glow">
       <div className="container mx-auto px-4 lg:px-8 max-w-6xl relative z-10">
-        <div className="text-center mb-20">
+        <motion.div
+          initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
+          className="text-center mb-20"
+        >
           <p className="text-sm tracking-[0.2em] uppercase text-primary mb-4">Expertise</p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6 tracking-tight gradient-text">
             Skills & Expertise
@@ -44,41 +61,50 @@ const SkillsSection = () => {
           <p className="text-lg text-muted-foreground max-w-xl mx-auto">
             A comprehensive toolkit for building innovative AI solutions
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" style={{ perspective: "1200px" }}>
           {skillCategories.map((category, ci) => {
             const Icon = category.icon;
             return (
-              <TiltCard key={category.title} className="glass-card-hover p-6" delay={ci * 0.08}>
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="p-2.5 rounded-xl bg-primary/10">
-                    <Icon className="w-5 h-5 text-primary" />
-                  </div>
-                  <h3 className="text-lg font-semibold tracking-tight">{category.title}</h3>
-                </div>
-
-                <div className="space-y-4">
-                  {category.skills.map((skill, si) => (
-                    <div key={skill.name}>
-                      <div className="flex justify-between items-center mb-1.5">
-                        <span className="text-sm text-foreground/70">{skill.name}</span>
-                        <span className="text-xs text-muted-foreground">{skill.level}%</span>
-                      </div>
-                      <div className="h-1.5 bg-secondary rounded-full overflow-hidden">
-                        <div
-                          className="h-full rounded-full transition-all duration-1000 ease-out"
-                          style={{
-                            width: isVisible ? `${skill.level}%` : "0%",
-                            background: "linear-gradient(90deg, hsl(var(--primary)), hsl(var(--accent)))",
-                            transitionDelay: `${ci * 0.1 + si * 0.05}s`,
-                          }}
-                        />
-                      </div>
+              <motion.div
+                key={category.title}
+                custom={ci}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-40px" }}
+                variants={cardVariants}
+              >
+                <TiltCard className="glass-card-hover p-6 h-full" delay={ci * 0.08}>
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="p-2.5 rounded-xl bg-primary/10 group-hover:scale-110 transition-transform">
+                      <Icon className="w-5 h-5 text-primary" />
                     </div>
-                  ))}
-                </div>
-              </TiltCard>
+                    <h3 className="text-lg font-semibold tracking-tight">{category.title}</h3>
+                  </div>
+
+                  <div className="space-y-4">
+                    {category.skills.map((skill, si) => (
+                      <div key={skill.name}>
+                        <div className="flex justify-between items-center mb-1.5">
+                          <span className="text-sm text-foreground/70">{skill.name}</span>
+                          <span className="text-xs text-muted-foreground">{skill.level}%</span>
+                        </div>
+                        <div className="h-1.5 bg-secondary rounded-full overflow-hidden">
+                          <div
+                            className="h-full rounded-full transition-all duration-1000 ease-out"
+                            style={{
+                              width: isVisible ? `${skill.level}%` : "0%",
+                              background: "linear-gradient(90deg, hsl(var(--primary)), hsl(var(--accent)))",
+                              transitionDelay: `${ci * 0.1 + si * 0.05}s`,
+                            }}
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </TiltCard>
+              </motion.div>
             );
           })}
         </div>
