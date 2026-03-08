@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from "react";
-import { motion, useSpring, useMotionValue } from "framer-motion";
+import { useEffect, useState } from "react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 
 const CustomCursor = () => {
   const cursorX = useMotionValue(0);
@@ -7,7 +7,7 @@ const CustomCursor = () => {
   const [isHovering, setIsHovering] = useState(false);
   const [isClicking, setIsClicking] = useState(false);
 
-  const springConfig = { damping: 20, stiffness: 400, mass: 0.3 };
+  const springConfig = { damping: 22, stiffness: 350, mass: 0.4 };
   const x = useSpring(cursorX, springConfig);
   const y = useSpring(cursorY, springConfig);
 
@@ -51,56 +51,45 @@ const CustomCursor = () => {
 
   return (
     <>
-      {/* Crosshair / diamond cursor */}
+      {/* Spotlight glow */}
       <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[9999]"
+        className="fixed top-0 left-0 pointer-events-none z-[9998]"
         style={{ x, y }}
       >
         <motion.div
-          className="relative -translate-x-1/2 -translate-y-1/2"
+          className="-translate-x-1/2 -translate-y-1/2 rounded-full"
           animate={{
-            scale: isClicking ? 0.7 : isHovering ? 1.6 : 1,
-            rotate: isHovering ? 45 : 0,
+            width: isHovering ? 280 : 200,
+            height: isHovering ? 280 : 200,
+            opacity: isClicking ? 0.18 : isHovering ? 0.12 : 0.07,
           }}
-          transition={{ type: "spring", damping: 18, stiffness: 350 }}
-        >
-          {/* Diamond shape */}
-          <div
-            className="w-5 h-5 border-2 rounded-[4px] rotate-45"
-            style={{
-              borderColor: isHovering ? "hsl(var(--primary))" : "hsl(var(--foreground) / 0.6)",
-              background: isHovering ? "hsl(var(--primary) / 0.1)" : "transparent",
-              transition: "border-color 0.2s, background 0.2s",
-            }}
-          />
-          {/* Center dot */}
-          <motion.div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
-            animate={{
-              width: isHovering ? 6 : 3,
-              height: isHovering ? 6 : 3,
-              backgroundColor: isHovering ? "hsl(var(--primary))" : "hsl(var(--foreground) / 0.8)",
-            }}
-            transition={{ duration: 0.2 }}
-          />
-        </motion.div>
+          transition={{ type: "spring", damping: 20, stiffness: 200 }}
+          style={{
+            background: "radial-gradient(circle, hsl(var(--primary) / 0.5) 0%, hsl(var(--primary) / 0.15) 35%, transparent 70%)",
+            filter: "blur(30px)",
+          }}
+        />
       </motion.div>
 
-      {/* Trailing glow on hover */}
-      {isHovering && (
+      {/* Small center dot */}
+      <motion.div
+        className="fixed top-0 left-0 pointer-events-none z-[9999]"
+        style={{ x: cursorX, y: cursorY }}
+      >
         <motion.div
-          className="fixed top-0 left-0 pointer-events-none z-[9998]"
-          style={{ x: cursorX, y: cursorY }}
-        >
-          <motion.div
-            className="w-10 h-10 -translate-x-1/2 -translate-y-1/2 rounded-full"
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 0.15 }}
-            exit={{ scale: 0, opacity: 0 }}
-            style={{ background: "hsl(var(--primary))", filter: "blur(10px)" }}
-          />
-        </motion.div>
-      )}
+          className="-translate-x-1/2 -translate-y-1/2 rounded-full"
+          animate={{
+            width: isHovering ? 8 : 5,
+            height: isHovering ? 8 : 5,
+            scale: isClicking ? 0.6 : 1,
+            backgroundColor: isHovering ? "hsl(var(--primary))" : "hsl(var(--foreground) / 0.7)",
+            boxShadow: isHovering
+              ? "0 0 12px hsl(var(--primary) / 0.6)"
+              : "0 0 4px hsl(var(--foreground) / 0.2)",
+          }}
+          transition={{ type: "spring", damping: 25, stiffness: 400 }}
+        />
+      </motion.div>
     </>
   );
 };
