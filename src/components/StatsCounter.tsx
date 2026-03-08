@@ -6,7 +6,6 @@ const stats = [
   { icon: Trophy, value: 9, suffix: "+", label: "Hackathons", color: "text-amber-400" },
   { icon: Code2, value: 11, suffix: "+", label: "AI Projects", color: "text-primary" },
   { icon: Rocket, value: 2, suffix: "", label: "Startups Founded", color: "text-emerald-400" },
-  { icon: Users, value: 5000, suffix: "+", label: "Users Impacted", color: "text-violet-400" },
 ];
 
 const AnimatedNumber = ({ value, suffix, inView }: { value: number; suffix: string; inView: boolean }) => {
