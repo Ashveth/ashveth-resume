@@ -98,13 +98,15 @@ const BlogSection = () => {
                       {post.excerpt}
                     </p>
 
-                    <Button
-                      variant="ghost"
-                      className="group/btn p-0 h-auto font-medium text-sm md:text-base text-primary hover:text-primary hover:bg-transparent"
-                    >
-                      Read More
-                      <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                    </Button>
+                    <Link to={`/blog/${post.slug}`}>
+                      <Button
+                        variant="ghost"
+                        className="group/btn p-0 h-auto font-medium text-sm md:text-base text-primary hover:text-primary hover:bg-transparent"
+                      >
+                        Read More
+                        <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                      </Button>
+                    </Link>
                   </div>
                 </article>
               </TiltCard>
