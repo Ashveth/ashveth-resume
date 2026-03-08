@@ -1,113 +1,153 @@
-import { useEffect, useRef, useState } from "react";
-import { Code, Brain, Palette, Server, Wrench } from "lucide-react";
-import { use3DTilt } from "@/hooks/use3DTilt";
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { Code, Brain, Palette, Server, Wrench, Smartphone } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
-const TiltCard = ({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) => {
-  const ref = use3DTilt({ maxTilt: 5, scale: 1.015 });
-  return (
-    <div ref={ref} className={className} style={{ transformStyle: "preserve-3d", transitionDelay: `${delay}s` }}>
-      {children}
-    </div>
-  );
+const skillCategories = [
+  {
+    icon: Code,
+    title: "Languages & Frameworks",
+    gradient: "from-blue-500 to-cyan-400",
+    skills: ["Python", "JavaScript", "TypeScript", "React", "Next.js", "Tailwind CSS", "HTML/CSS"],
+  },
+  {
+    icon: Brain,
+    title: "AI & Machine Learning",
+    gradient: "from-violet-500 to-purple-400",
+    skills: ["Agentic AI", "LLMs & GPT", "Prompt Engineering", "AI Agent Development", "NLP", "Computer Vision"],
+  },
+  {
+    icon: Palette,
+    title: "Design & UX",
+    gradient: "from-pink-500 to-rose-400",
+    skills: ["UI/UX Design", "Figma", "User Research", "Prototyping", "Design Systems", "Responsive Design"],
+  },
+  {
+    icon: Server,
+    title: "Backend & Data",
+    gradient: "from-emerald-500 to-teal-400",
+    skills: ["FastAPI", "Supabase", "PostgreSQL", "REST APIs", "Database Design", "Edge Functions"],
+  },
+  {
+    icon: Wrench,
+    title: "DevOps & Tools",
+    gradient: "from-amber-500 to-orange-400",
+    skills: ["Git & GitHub", "Vercel", "Docker", "VS Code", "Linux", "CI/CD"],
+  },
+  {
+    icon: Smartphone,
+    title: "Platforms & More",
+    gradient: "from-teal-500 to-cyan-400",
+    skills: ["Lovable", "Base44", "Google AI Studio", "Vite", "Framer Motion", "Three.js"],
+  },
+];
+
+const containerVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.08 } },
 };
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 50, rotateX: 5 },
-  visible: (i: number) => ({
+  hidden: { opacity: 0, y: 40, scale: 0.96 },
+  visible: {
     opacity: 1,
     y: 0,
-    rotateX: 0,
-    transition: { delay: i * 0.1, duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] },
+    scale: 1,
+    transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] },
+  },
+};
+
+const skillPillVariants = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: (i: number) => ({
+    opacity: 1,
+    scale: 1,
+    transition: { delay: i * 0.04, duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] },
   }),
 };
 
 const SkillsSection = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setIsVisible(true); },
-      { threshold: 0.15 }
-    );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
-
-  const skillCategories = [
-    { icon: Code, title: "Programming", skills: [{ name: "Python", level: 90 }, { name: "JavaScript", level: 85 }, { name: "React", level: 88 }, { name: "TypeScript", level: 82 }] },
-    { icon: Brain, title: "AI & ML", skills: [{ name: "Agentic AI", level: 92 }, { name: "LLMs", level: 88 }, { name: "AI Agent Dev", level: 90 }, { name: "Prompt Eng.", level: 85 }] },
-    { icon: Palette, title: "Design", skills: [{ name: "UX/UI Design", level: 87 }, { name: "Figma", level: 83 }, { name: "User Research", level: 85 }, { name: "Prototyping", level: 86 }] },
-    { icon: Server, title: "Backend", skills: [{ name: "FastAPI", level: 88 }, { name: "API Integration", level: 90 }, { name: "Database Design", level: 82 }, { name: "PostgreSQL", level: 80 }] },
-    { icon: Wrench, title: "Tools", skills: [{ name: "Git & GitHub", level: 89 }, { name: "VS Code", level: 92 }, { name: "Docker", level: 78 }, { name: "Vercel", level: 85 }] },
-  ];
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+  const headerY = useTransform(scrollYProgress, [0, 0.3], [50, 0]);
+  const headerOpacity = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
 
   return (
     <section id="skills" ref={sectionRef} className="py-32 relative overflow-hidden ambient-glow">
+      {/* Ambient bg elements */}
+      <div className="absolute top-1/4 -left-32 w-[500px] h-[500px] rounded-full bg-primary/[0.03] blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-1/4 -right-32 w-[400px] h-[400px] rounded-full bg-accent/[0.03] blur-[100px] pointer-events-none" />
+
       <div className="container mx-auto px-4 lg:px-8 max-w-6xl relative z-10">
+        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
+          style={{ y: headerY, opacity: headerOpacity }}
           className="text-center mb-20"
         >
           <p className="text-sm tracking-[0.2em] uppercase text-primary mb-4">Expertise</p>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6 tracking-tight gradient-text">
-            Skills & Expertise
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6 tracking-tight">
+            Skills & <span className="gradient-text">Expertise</span>
           </h2>
           <div className="section-divider mb-6" />
           <p className="text-lg text-muted-foreground max-w-xl mx-auto">
-            A comprehensive toolkit for building innovative AI solutions
+            A comprehensive toolkit for building innovative solutions
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" style={{ perspective: "1200px" }}>
-          {skillCategories.map((category, ci) => {
+        {/* Skills Grid */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+          variants={containerVariants}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+          {skillCategories.map((category) => {
             const Icon = category.icon;
             return (
-              <motion.div
-                key={category.title}
-                custom={ci}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-40px" }}
-                variants={cardVariants}
-              >
-                <TiltCard className="glass-card-hover p-6 h-full" delay={ci * 0.08}>
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="p-2.5 rounded-xl bg-primary/10 group-hover:scale-110 transition-transform">
-                      <Icon className="w-5 h-5 text-primary" />
+              <motion.div key={category.title} variants={cardVariants}>
+                <div className="group relative h-full rounded-2xl overflow-hidden bg-card/40 backdrop-blur-xl border border-border/40 p-6 hover:border-primary/30 hover:shadow-[0_20px_60px_-15px_hsl(var(--primary)/0.15)] transition-all duration-500 hover:-translate-y-1">
+                  {/* Gradient accent line */}
+                  <div className={`absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r ${category.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+
+                  {/* Icon + Title */}
+                  <div className="flex items-center gap-3 mb-5">
+                    <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${category.gradient} flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-500`}>
+                      <Icon className="w-5 h-5 text-white" />
                     </div>
-                    <h3 className="text-lg font-semibold tracking-tight">{category.title}</h3>
+                    <h3 className="text-base font-display font-semibold tracking-tight group-hover:text-primary transition-colors duration-300">
+                      {category.title}
+                    </h3>
                   </div>
 
-                  <div className="space-y-4">
+                  {/* Skill Pills */}
+                  <motion.div
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    className="flex flex-wrap gap-2"
+                  >
                     {category.skills.map((skill, si) => (
-                      <div key={skill.name}>
-                        <div className="flex justify-between items-center mb-1.5">
-                          <span className="text-sm text-foreground/70">{skill.name}</span>
-                          <span className="text-xs text-muted-foreground">{skill.level}%</span>
-                        </div>
-                        <div className="h-1.5 bg-secondary rounded-full overflow-hidden">
-                          <div
-                            className="h-full rounded-full transition-all duration-1000 ease-out"
-                            style={{
-                              width: isVisible ? `${skill.level}%` : "0%",
-                              background: "linear-gradient(90deg, hsl(var(--primary)), hsl(var(--accent)))",
-                              transitionDelay: `${ci * 0.1 + si * 0.05}s`,
-                            }}
-                          />
-                        </div>
-                      </div>
+                      <motion.span
+                        key={skill}
+                        custom={si}
+                        variants={skillPillVariants}
+                        className="px-3 py-1.5 text-xs font-medium rounded-lg
+                          bg-secondary/50 text-foreground/70 border border-border/30
+                          hover:bg-primary/10 hover:text-primary hover:border-primary/30
+                          transition-all duration-300 cursor-default"
+                      >
+                        {skill}
+                      </motion.span>
                     ))}
-                  </div>
-                </TiltCard>
+                  </motion.div>
+                </div>
               </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
