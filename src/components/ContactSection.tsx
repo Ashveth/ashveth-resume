@@ -28,7 +28,7 @@ const ContactSection = () => {
   };
 
   const contactLinks = [
-    { icon: Mail, label: "Email", value: "ashvethpawar@gmail.com", href: "mailto:ashvethpawar@gmail.com", color: "text-red-400" },
+    { icon: Mail, label: "Email", value: "ashveth00@gmail.com", href: "mailto:ashveth00@gmail.com", color: "text-red-400" },
     { icon: Linkedin, label: "LinkedIn", value: "Ashveth Pawar", href: "https://www.linkedin.com/in/ashveth-pawar-820921327", color: "text-blue-400" },
     { icon: Instagram, label: "Instagram", value: "@ashveth.pawar", href: "https://instagram.com/ashveth.pawar", color: "text-pink-400" },
     { icon: Github, label: "GitHub", value: "Ashveth", href: "https://github.com/Ashveth", color: "text-gray-400" },
