@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { Trophy, Code2, Rocket, Users } from "lucide-react";
+import { Trophy, Code2, Rocket } from "lucide-react";
 
 const stats = [
   { icon: Trophy, value: 9, suffix: "+", label: "Hackathons", color: "text-amber-400" },
