@@ -50,8 +50,11 @@ const Index = () => {
 
   return (
     <main className="min-h-screen bg-background text-foreground overflow-x-hidden relative">
-      {/* Global 3D background */}
-      <FloatingScene3D />
+      {/* Global backgrounds */}
+      <div className="hidden dark:block">
+        <FloatingScene3D />
+      </div>
+      <LightModeBackground />
 
       <ScrollProgress />
       <Navigation />
