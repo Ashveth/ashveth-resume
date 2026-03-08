@@ -143,9 +143,14 @@ const HeroSection = () => {
             initial="hidden"
             animate="visible"
             variants={textReveal}
-            className="text-xl md:text-2xl lg:text-3xl text-muted-foreground mb-4 font-light max-w-3xl mx-auto tracking-tight"
+            className="text-xl md:text-2xl lg:text-3xl text-muted-foreground mb-4 font-light max-w-3xl mx-auto tracking-tight h-[1.5em]"
           >
-            Building the Future with AI & Innovation
+            {typewriterText}
+            <motion.span
+              animate={{ opacity: [1, 0] }}
+              transition={{ duration: 0.6, repeat: Infinity, repeatType: "reverse" }}
+              className="inline-block w-[2px] h-[1em] bg-primary ml-1 align-middle"
+            />
           </motion.p>
 
           <motion.p
