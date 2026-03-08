@@ -131,6 +131,189 @@ const AmbientParticles = ({ mouse }: { mouse: { x: number; y: number } }) => {
   );
 };
 
+// Neural Network Layer
+const NeuralNetwork = ({ mouse }: { mouse: { x: number; y: number } }) => {
+  const groupRef = useRef<THREE.Group>(null);
+  const nodesRef = useRef<THREE.Points>(null);
+  const linesRef = useRef<THREE.LineSegments>(null);
+  const pulsesRef = useRef<THREE.Points>(null);
+
+  const nodeCount = 40;
+  const maxConnectionDist = 3.5;
+
+  const { nodePositions, nodeVelocities, connections, pulseData } = useMemo(() => {
+    const pos = new Float32Array(nodeCount * 3);
+    const vel = new Float32Array(nodeCount * 3);
+    for (let i = 0; i < nodeCount; i++) {
+      pos[i * 3] = (Math.random() - 0.5) * 16;
+      pos[i * 3 + 1] = (Math.random() - 0.5) * 10;
+      pos[i * 3 + 2] = (Math.random() - 0.5) * 8 - 4;
+      vel[i * 3] = (Math.random() - 0.5) * 0.003;
+      vel[i * 3 + 1] = (Math.random() - 0.5) * 0.003;
+      vel[i * 3 + 2] = (Math.random() - 0.5) * 0.002;
+    }
+
+    // Pre-calculate potential connections
+    const conns: { from: number; to: number }[] = [];
+    for (let i = 0; i < nodeCount; i++) {
+      for (let j = i + 1; j < nodeCount; j++) {
+        const dx = pos[i * 3] - pos[j * 3];
+        const dy = pos[i * 3 + 1] - pos[j * 3 + 1];
+        const dz = pos[i * 3 + 2] - pos[j * 3 + 2];
+        const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
+        if (dist < maxConnectionDist) {
+          conns.push({ from: i, to: j });
+        }
+      }
+    }
+
+    // Pulse particles traveling along connections
+    const pulseCount = Math.min(conns.length, 20);
+    const pData = Array.from({ length: pulseCount }, (_, i) => ({
+      connectionIndex: i % conns.length,
+      progress: Math.random(),
+      speed: 0.15 + Math.random() * 0.25,
+    }));
+
+    return { nodePositions: pos, nodeVelocities: vel, connections: conns, pulseData: pData };
+  }, []);
+
+  const linePositions = useMemo(() => new Float32Array(connections.length * 6), [connections]);
+  const lineColors = useMemo(() => {
+    const c = new Float32Array(connections.length * 6);
+    c.fill(0.4); // base color
+    return c;
+  }, [connections]);
+  const pulsePositions = useMemo(() => new Float32Array(pulseData.length * 3), [pulseData]);
+
+  useFrame((state) => {
+    if (!groupRef.current) return;
+    const t = state.clock.elapsedTime;
+
+    // Subtle parallax from mouse
+    groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, mouse.x * 0.04, 0.015);
+    groupRef.current.rotation.x = THREE.MathUtils.lerp(groupRef.current.rotation.x, mouse.y * 0.03, 0.015);
+
+    // Move nodes slowly
+    for (let i = 0; i < nodeCount; i++) {
+      nodePositions[i * 3] += nodeVelocities[i * 3];
+      nodePositions[i * 3 + 1] += nodeVelocities[i * 3 + 1];
+      nodePositions[i * 3 + 2] += nodeVelocities[i * 3 + 2];
+
+      // Boundary bounce
+      if (Math.abs(nodePositions[i * 3]) > 8) nodeVelocities[i * 3] *= -1;
+      if (Math.abs(nodePositions[i * 3 + 1]) > 5) nodeVelocities[i * 3 + 1] *= -1;
+      if (Math.abs(nodePositions[i * 3 + 2] + 4) > 4) nodeVelocities[i * 3 + 2] *= -1;
+    }
+
+    if (nodesRef.current) {
+      nodesRef.current.geometry.attributes.position.needsUpdate = true;
+    }
+
+    // Update connection lines
+    for (let c = 0; c < connections.length; c++) {
+      const { from, to } = connections[c];
+      linePositions[c * 6] = nodePositions[from * 3];
+      linePositions[c * 6 + 1] = nodePositions[from * 3 + 1];
+      linePositions[c * 6 + 2] = nodePositions[from * 3 + 2];
+      linePositions[c * 6 + 3] = nodePositions[to * 3];
+      linePositions[c * 6 + 4] = nodePositions[to * 3 + 1];
+      linePositions[c * 6 + 5] = nodePositions[to * 3 + 2];
+
+      // Distance-based opacity via color brightness
+      const dx = nodePositions[from * 3] - nodePositions[to * 3];
+      const dy = nodePositions[from * 3 + 1] - nodePositions[to * 3 + 1];
+      const dz = nodePositions[from * 3 + 2] - nodePositions[to * 3 + 2];
+      const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
+      const brightness = Math.max(0, 1 - dist / maxConnectionDist) * 0.35;
+
+      // Blue tint (r=0.3, g=0.5, b=1.0) * brightness
+      lineColors[c * 6] = 0.3 * brightness;
+      lineColors[c * 6 + 1] = 0.5 * brightness;
+      lineColors[c * 6 + 2] = 1.0 * brightness;
+      lineColors[c * 6 + 3] = 0.3 * brightness;
+      lineColors[c * 6 + 4] = 0.5 * brightness;
+      lineColors[c * 6 + 5] = 1.0 * brightness;
+    }
+
+    if (linesRef.current) {
+      linesRef.current.geometry.attributes.position.needsUpdate = true;
+      linesRef.current.geometry.attributes.color.needsUpdate = true;
+    }
+
+    // Update pulses traveling along connections
+    for (let p = 0; p < pulseData.length; p++) {
+      const pulse = pulseData[p];
+      pulse.progress += pulse.speed * 0.008;
+      if (pulse.progress > 1) {
+        pulse.progress = 0;
+        pulse.connectionIndex = Math.floor(Math.random() * connections.length);
+      }
+
+      const conn = connections[pulse.connectionIndex];
+      if (!conn) continue;
+      const { from, to } = conn;
+      const prog = pulse.progress;
+
+      pulsePositions[p * 3] = nodePositions[from * 3] + (nodePositions[to * 3] - nodePositions[from * 3]) * prog;
+      pulsePositions[p * 3 + 1] = nodePositions[from * 3 + 1] + (nodePositions[to * 3 + 1] - nodePositions[from * 3 + 1]) * prog;
+      pulsePositions[p * 3 + 2] = nodePositions[from * 3 + 2] + (nodePositions[to * 3 + 2] - nodePositions[from * 3 + 2]) * prog;
+    }
+
+    if (pulsesRef.current) {
+      pulsesRef.current.geometry.attributes.position.needsUpdate = true;
+    }
+  });
+
+  return (
+    <group ref={groupRef}>
+      {/* Nodes */}
+      <points ref={nodesRef}>
+        <bufferGeometry>
+          <bufferAttribute attach="attributes-position" count={nodeCount} array={nodePositions} itemSize={3} />
+        </bufferGeometry>
+        <pointsMaterial
+          size={0.08}
+          color="#4488ff"
+          transparent
+          opacity={0.5}
+          sizeAttenuation
+          blending={THREE.AdditiveBlending}
+        />
+      </points>
+
+      {/* Connection lines */}
+      <lineSegments ref={linesRef}>
+        <bufferGeometry>
+          <bufferAttribute attach="attributes-position" count={connections.length * 2} array={linePositions} itemSize={3} />
+          <bufferAttribute attach="attributes-color" count={connections.length * 2} array={lineColors} itemSize={3} />
+        </bufferGeometry>
+        <lineBasicMaterial
+          vertexColors
+          transparent
+          opacity={0.6}
+          blending={THREE.AdditiveBlending}
+        />
+      </lineSegments>
+
+      {/* Traveling pulses */}
+      <points ref={pulsesRef}>
+        <bufferGeometry>
+          <bufferAttribute attach="attributes-position" count={pulseData.length} array={pulsePositions} itemSize={3} />
+        </bufferGeometry>
+        <pointsMaterial
+          size={0.12}
+          color="#66aaff"
+          transparent
+          opacity={0.7}
+          sizeAttenuation
+          blending={THREE.AdditiveBlending}
+        />
+      </points>
+    </group>
+  );
+};
+
 const FloatingScene3D = () => {
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
 
@@ -158,6 +341,7 @@ const FloatingScene3D = () => {
         <directionalLight position={[-3, -2, 4]} intensity={0.2} color="#aaccff" />
         <FloatingShapes mouse={mouse} />
         <AmbientParticles mouse={mouse} />
+        <NeuralNetwork mouse={mouse} />
       </Canvas>
     </div>
   );
