@@ -100,7 +100,13 @@ const ContactSection = () => {
                 target={contact.href.startsWith("http") ? "_blank" : undefined}
                 rel={contact.href.startsWith("http") ? "noopener noreferrer" : undefined}
                 className="glass-card-hover p-4 flex items-center gap-4 group block"
-                onClick={(e) => { if (contact.href === "#") e.preventDefault(); }}
+                onClick={(e) => {
+                  if (contact.href === "#") { e.preventDefault(); return; }
+                  if (contact.href.startsWith("mailto:") || contact.href.startsWith("tel:")) {
+                    e.preventDefault();
+                    window.open(contact.href, "_self");
+                  }
+                }}
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
