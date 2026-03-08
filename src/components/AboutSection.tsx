@@ -65,15 +65,15 @@ const AboutSection = () => {
                     <h3 className="text-2xl font-display font-semibold mb-4 tracking-tight">Ashveth Maruti Pawar</h3>
                     <p className="text-foreground/70 leading-relaxed">
                       I'm a passionate tech enthusiast and second-year Computer Engineering student 
-                      at Mahatma Gandhi Mission College of Engineering, Navi Mumbai. I thrive 
-                      on solving real-world problems through AI, product design, and creative coding.
+                      at MGM College of Engineering & Technology, Navi Mumbai. I thrive 
+                      on solving real-world problems through AI, full-stack development, and creative digital tools.
                     </p>
                   </div>
                 </motion.div>
                 <motion.p variants={fadeSlide} className="text-foreground/70 leading-relaxed pl-[60px]">
-                  My journey includes building AI agents, developing UX-focused platforms, and co-founding a startup 
-                  that helps creators with websites and content. I aim to use technology to build human-centered, 
-                  impactful solutions.
+                  My journey spans building 10+ AI-powered projects, winning hackathons like Grizzly Hacks (1st place) and Smart India AI Agent Hackathon, 
+                  and founding <strong className="text-foreground">PdfSizeFix</strong> — a free all-in-one online utility platform. I also co-founded <strong className="text-foreground">Curloft</strong>, 
+                  a creative startup helping creators build their digital presence. I believe in building tools that are simple, accessible, and impactful.
                 </motion.p>
               </motion.div>
 
