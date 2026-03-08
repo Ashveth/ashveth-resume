@@ -49,10 +49,14 @@ const BlogPostPage = () => {
     };
 
     const inlineFormat = (text: string) => {
-      return text
+      const raw = text
         .replace(/\*\*(.*?)\*\*/g, '<strong class="text-foreground font-semibold">$1</strong>')
         .replace(/\*(.*?)\*/g, '<em>$1</em>')
-        .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">$1</a>');
+        .replace(/\[(.*?)\]\((.*?)\)/g, (_match, label, url) => {
+          const sanitizedUrl = /^https?:\/\//i.test(url) ? url : '#';
+          return `<a href="${sanitizedUrl}" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">${label}</a>`;
+        });
+      return DOMPurify.sanitize(raw);
     };
 
     for (const line of lines) {
