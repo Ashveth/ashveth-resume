@@ -6,6 +6,7 @@ import ScrollProgress from "@/components/ScrollProgress";
 import CinematicSection from "@/components/CinematicSection";
 import FloatingScene3D from "@/components/FloatingScene3D";
 import LightModeBackground from "@/components/LightModeBackground";
+import CustomCursor from "@/components/CustomCursor";
 import { useLenis } from "@/hooks/useLenis";
 
 // Lazy load heavier sections
@@ -21,6 +22,7 @@ const VideoShowcase = lazy(() => import("@/components/VideoShowcase"));
 const BlogSection = lazy(() => import("@/components/BlogSection"));
 const ContactSection = lazy(() => import("@/components/ContactSection"));
 const Footer = lazy(() => import("@/components/Footer"));
+const StatsCounter = lazy(() => import("@/components/StatsCounter"));
 
 const SectionFallback = () => (
   <div className="min-h-[40vh] flex items-center justify-center">
@@ -50,6 +52,7 @@ const Index = () => {
 
   return (
     <main className="min-h-screen bg-background text-foreground overflow-x-hidden relative">
+      <CustomCursor />
       {/* Global backgrounds */}
       <div className="hidden dark:block">
         <FloatingScene3D />
@@ -65,6 +68,8 @@ const Index = () => {
         <CinematicSection parallaxIntensity={30} scaleRange={[0.96, 1]} rotateRange={[0.8, 0]}>
           <AboutSection />
         </CinematicSection>
+
+        <StatsCounter />
 
         <CinematicSection parallaxIntensity={25} scaleRange={[0.97, 1]} rotateRange={[0.5, 0]}>
           <SkillsSection />

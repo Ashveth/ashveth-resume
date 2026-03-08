@@ -1,12 +1,50 @@
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowDown, Download } from "lucide-react";
 import { useMouseParallax } from "@/hooks/useMouseParallax";
 import { motion, useScroll, useTransform } from "framer-motion";
 
+const titles = [
+  "Building the Future with AI & Innovation",
+  "Full-Stack Developer & AI Enthusiast",
+  "Hackathon Winner & Problem Solver",
+];
+
+const useTypewriter = (texts: string[], typingSpeed = 60, deletingSpeed = 40, pause = 2000) => {
+  const [displayText, setDisplayText] = useState("");
+  const [textIndex, setTextIndex] = useState(0);
+  const [charIndex, setCharIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    const current = texts[textIndex];
+    const timeout = setTimeout(() => {
+      if (!isDeleting) {
+        setDisplayText(current.slice(0, charIndex + 1));
+        setCharIndex(charIndex + 1);
+        if (charIndex + 1 === current.length) {
+          setTimeout(() => setIsDeleting(true), pause);
+        }
+      } else {
+        setDisplayText(current.slice(0, charIndex - 1));
+        setCharIndex(charIndex - 1);
+        if (charIndex - 1 === 0) {
+          setIsDeleting(false);
+          setTextIndex((textIndex + 1) % texts.length);
+        }
+      }
+    }, isDeleting ? deletingSpeed : typingSpeed);
+
+    return () => clearTimeout(timeout);
+  }, [charIndex, isDeleting, textIndex, texts, typingSpeed, deletingSpeed, pause]);
+
+  return displayText;
+};
+
 const HeroSection = () => {
   const mouse = useMouseParallax(30);
   const sectionRef = useRef<HTMLElement>(null);
+  const typewriterText = useTypewriter(titles);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -105,9 +143,14 @@ const HeroSection = () => {
             initial="hidden"
             animate="visible"
             variants={textReveal}
-            className="text-xl md:text-2xl lg:text-3xl text-muted-foreground mb-4 font-light max-w-3xl mx-auto tracking-tight"
+            className="text-xl md:text-2xl lg:text-3xl text-muted-foreground mb-4 font-light max-w-3xl mx-auto tracking-tight h-[1.5em]"
           >
-            Building the Future with AI & Innovation
+            {typewriterText}
+            <motion.span
+              animate={{ opacity: [1, 0] }}
+              transition={{ duration: 0.6, repeat: Infinity, repeatType: "reverse" }}
+              className="inline-block w-[2px] h-[1em] bg-primary ml-1 align-middle"
+            />
           </motion.p>
 
           <motion.p
