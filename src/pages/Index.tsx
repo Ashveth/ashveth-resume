@@ -16,6 +16,7 @@ const AchievementsSection = lazy(() => import("@/components/AchievementsSection"
 const CertificatesSection = lazy(() => import("@/components/CertificatesSection"));
 const StartupSection = lazy(() => import("@/components/StartupSection"));
 const GallerySection = lazy(() => import("@/components/GallerySection"));
+const VideoShowcase = lazy(() => import("@/components/VideoShowcase"));
 const BlogSection = lazy(() => import("@/components/BlogSection"));
 const ContactSection = lazy(() => import("@/components/ContactSection"));
 const Footer = lazy(() => import("@/components/Footer"));
@@ -91,6 +92,10 @@ const Index = () => {
 
         <CinematicSection parallaxIntensity={25} scaleRange={[0.96, 1]} rotateRange={[0.6, 0]}>
           <BlogSection />
+        </CinematicSection>
+
+        <CinematicSection parallaxIntensity={30} scaleRange={[0.95, 1]} rotateRange={[0.8, 0]}>
+          <VideoShowcase />
         </CinematicSection>
 
         <CinematicSection parallaxIntensity={15} scaleRange={[0.98, 1]} rotateRange={[0.3, 0]}>
