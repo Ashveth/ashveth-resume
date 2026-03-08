@@ -6,6 +6,7 @@ import ScrollProgress from "@/components/ScrollProgress";
 import CinematicSection from "@/components/CinematicSection";
 import FloatingScene3D from "@/components/FloatingScene3D";
 import LightModeBackground from "@/components/LightModeBackground";
+import CustomCursor from "@/components/CustomCursor";
 import { useLenis } from "@/hooks/useLenis";
 
 // Lazy load heavier sections
@@ -21,6 +22,7 @@ const VideoShowcase = lazy(() => import("@/components/VideoShowcase"));
 const BlogSection = lazy(() => import("@/components/BlogSection"));
 const ContactSection = lazy(() => import("@/components/ContactSection"));
 const Footer = lazy(() => import("@/components/Footer"));
+const StatsCounter = lazy(() => import("@/components/StatsCounter"));
 
 const SectionFallback = () => (
   <div className="min-h-[40vh] flex items-center justify-center">
