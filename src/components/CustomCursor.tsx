@@ -79,8 +79,8 @@ const CustomCursor = () => {
         <motion.div
           className="-translate-x-1/2 -translate-y-1/2 rounded-full"
           animate={{
-            width: isHovering ? 8 : 5,
-            height: isHovering ? 8 : 5,
+            width: isHovering ? 12 : 7,
+            height: isHovering ? 12 : 7,
             scale: isClicking ? 0.6 : 1,
             backgroundColor: isHovering ? "hsl(var(--primary))" : "hsl(var(--foreground) / 0.7)",
             boxShadow: isHovering
