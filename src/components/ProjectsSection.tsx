@@ -1,4 +1,4 @@
-import { ExternalLink, Sprout, BookOpen, Stethoscope, GraduationCap, Lightbulb, Video, Brain, Gamepad2, Activity, HelpCircle } from "lucide-react";
+import { ExternalLink, Sprout, BookOpen, Stethoscope, GraduationCap, Lightbulb, Video, Brain, Gamepad2, Activity, HelpCircle, FileText } from "lucide-react";
 import { use3DTilt } from "@/hooks/use3DTilt";
 import { motion } from "framer-motion";
 
