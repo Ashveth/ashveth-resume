@@ -17,7 +17,7 @@ const ProjectsSection = lazy(() => import("@/components/ProjectsSection"));
 const AchievementsSection = lazy(() => import("@/components/AchievementsSection"));
 const CertificatesSection = lazy(() => import("@/components/CertificatesSection"));
 const StartupSection = lazy(() => import("@/components/StartupSection"));
-const GallerySection = lazy(() => import("@/components/GallerySection"));
+
 const VideoShowcase = lazy(() => import("@/components/VideoShowcase"));
 const BlogSection = lazy(() => import("@/components/BlogSection"));
 const ContactSection = lazy(() => import("@/components/ContactSection"));
