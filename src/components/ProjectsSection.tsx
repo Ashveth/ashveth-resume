@@ -25,7 +25,7 @@ const cardVariants = {
 const ProjectsSection = () => {
   const projects = [
     { icon: FileText, name: "PdfSizeFix", tagline: "Free all-in-one PDF tools, calculators & AI utilities", url: "https://www.pdfsizefix.in/", gradient: "from-blue-500 to-cyan-400" },
-    { icon: Sprout, name: "KrishiMitra AI", tagline: "Farmer's Smart Assistant", url: "https://lnkd.in/eXxp2fNF", gradient: "from-green-500 to-emerald-600" },
+    
     { icon: Stethoscope, name: "AI HealthMate", tagline: "Multilingual Health AI Assistant", url: "https://health-mate-multilingual.vercel.app/", gradient: "from-emerald-500 to-teal-600" },
     { icon: GraduationCap, name: "StudySphere", tagline: "Collaborative student workspace for productivity", url: "https://study-sphere-5e50c378.base44.app/", gradient: "from-violet-500 to-purple-600" },
     { icon: Brain, name: "AI Studio - Gemini App", tagline: "Google AI Studio powered intelligent app", url: "https://aistudio.google.com/apps/drive/1bf-lSQ3nCgWEoubC3eGDGt0p-5bYd_bO?fullscreenApplet=true&showPreview=true&showAssistant=true", gradient: "from-sky-500 to-blue-600" },
