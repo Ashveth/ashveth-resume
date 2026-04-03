@@ -108,6 +108,30 @@ const certificates = [
     image: wicsHackathon,
     description: "Certificate of Participation — Social Impact and Education tracks.",
   },
+  {
+    id: 12,
+    title: "NSCIF 2026 — Finalist",
+    organization: "Ashoka Young Changemakers & Connecting Dreams Foundation",
+    date: "2026",
+    image: nscif2026,
+    description: "Finalist in National Student Change Initiatives Fest 2026, EMPI Business School, New Delhi.",
+  },
+  {
+    id: 13,
+    title: "UAi Hawkathon 2026",
+    organization: "Universal AI University",
+    date: "2026",
+    image: uaiHawkathon,
+    description: "Certificate of Participation — Demonstrating innovation, creativity, and teamwork.",
+  },
+  {
+    id: 14,
+    title: "Lyzr Agent Studio — Completion",
+    organization: "Lyzr",
+    date: "March 2026",
+    image: lyzrCompletion,
+    description: "Exceptional skill in designing, building, and orchestrating AI agents using Lyzr Agent Studio.",
+  },
 ];
 
 const cardVariants = {
