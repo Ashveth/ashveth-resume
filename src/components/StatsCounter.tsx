@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { Trophy, Code2, Rocket } from "lucide-react";
+import { Trophy, Code2, Award } from "lucide-react";
 
 const stats = [
-  { icon: Trophy, value: 9, suffix: "+", label: "Hackathons", color: "text-amber-400" },
-  { icon: Code2, value: 11, suffix: "+", label: "AI Projects", color: "text-primary" },
-  { icon: Rocket, value: 2, suffix: "", label: "Startups Founded", color: "text-emerald-400" },
+  { icon: Trophy, value: 13, suffix: "+", label: "Hackathons", color: "text-amber-400" },
+  { icon: Code2, value: 9, suffix: "+", label: "AI Projects", color: "text-primary" },
+  { icon: Award, value: 14, suffix: "", label: "Certificates", color: "text-emerald-400" },
 ];
 
 const AnimatedNumber = ({ value, suffix, inView }: { value: number; suffix: string; inView: boolean }) => {
