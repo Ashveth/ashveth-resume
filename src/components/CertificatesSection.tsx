@@ -14,7 +14,9 @@ import mumbaiHacks from "@/assets/certs/mumbai-hacks.jpg";
 import studentHackpad from "@/assets/certs/student-hackpad.jpg";
 import techrushHackathon from "@/assets/certs/techrush-hackathon.jpg";
 import wicsHackathon from "@/assets/certs/wics-hackathon.jpg";
-
+import nscif2026 from "@/assets/certs/nscif-2026.png";
+import uaiHawkathon from "@/assets/certs/uai-hawkathon-2026.png";
+import lyzrCompletion from "@/assets/certs/lyzr-completion.png";
 const certificates = [
   {
     id: 1,
