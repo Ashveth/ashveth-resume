@@ -92,9 +92,6 @@ const Index = () => {
           <StartupSection />
         </CinematicSection>
 
-        <CinematicSection parallaxIntensity={20} scaleRange={[0.97, 1]} rotateRange={[0.5, 0]}>
-          <GallerySection />
-        </CinematicSection>
 
         <CinematicSection parallaxIntensity={25} scaleRange={[0.96, 1]} rotateRange={[0.6, 0]}>
           <BlogSection />
