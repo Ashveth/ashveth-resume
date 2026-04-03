@@ -1,9 +1,6 @@
-import { useRef } from "react";
 import { Award, BookOpen, Code } from "lucide-react";
 import { use3DTilt } from "@/hooks/use3DTilt";
-import { motion, useScroll, useTransform } from "framer-motion";
-import professionalPhoto from "@/assets/ashveth-professional.jpg";
-import streetPhoto from "@/assets/ashveth-street.jpg";
+import { motion } from "framer-motion";
 
 const TiltCard = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const ref = use3DTilt({ maxTilt: 6, scale: 1.02 });
