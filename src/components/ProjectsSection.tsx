@@ -28,7 +28,7 @@ const ProjectsSection = () => {
     
     { icon: Stethoscope, name: "AI HealthMate", tagline: "Multilingual Health AI Assistant", url: "https://health-mate-multilingual.vercel.app/", gradient: "from-emerald-500 to-teal-600" },
     { icon: GraduationCap, name: "StudySphere", tagline: "Collaborative student workspace for productivity", url: "https://study-sphere-5e50c378.base44.app/", gradient: "from-violet-500 to-purple-600" },
-    { icon: Brain, name: "AI Studio - Gemini App", tagline: "Google AI Studio powered intelligent app", url: "https://aistudio.google.com/apps/drive/1bf-lSQ3nCgWEoubC3eGDGt0p-5bYd_bO?fullscreenApplet=true&showPreview=true&showAssistant=true", gradient: "from-sky-500 to-blue-600" },
+    
     { icon: Lightbulb, name: "Idea Navigator", tagline: "AI startup idea validator with market analysis", url: "https://idea-navigator-zeta.vercel.app/", gradient: "from-amber-500 to-orange-600" },
     { icon: Video, name: "VidyaSetu", tagline: "AI-powered learning platform for Tier-2/3 cities", url: "https://vidyasetu-beige.vercel.app/", gradient: "from-rose-500 to-pink-600" },
     { icon: BookOpen, name: "EduGrant AI", tagline: "Smart scholarship & education grant matching", url: "https://edu-sparkle-match.vercel.app/", gradient: "from-cyan-500 to-teal-600" },
