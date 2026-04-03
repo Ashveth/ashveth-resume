@@ -11,7 +11,7 @@ import { useLenis } from "@/hooks/useLenis";
 
 // Lazy load heavier sections
 const AboutSection = lazy(() => import("@/components/AboutSection"));
-const SkillsSection = lazy(() => import("@/components/SkillsSection"));
+
 const ExperienceSection = lazy(() => import("@/components/ExperienceSection"));
 const ProjectsSection = lazy(() => import("@/components/ProjectsSection"));
 const AchievementsSection = lazy(() => import("@/components/AchievementsSection"));
