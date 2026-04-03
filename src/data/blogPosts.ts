@@ -260,46 +260,4 @@ The most exciting projects combined human creativity with AI capabilities — ne
 
 This event reinforced my belief that the future of technology is not about AI vs. humans, but about AI + humans creating something greater than either could alone.`,
   },
-  {
-    id: 7,
-    slug: "curloft-startup-story",
-    title: "From Idea to Startup: The Curloft Story",
-    excerpt: "Lessons learned about entrepreneurship, design, and building in public.",
-    date: "August 2025",
-    readTime: "6 min read",
-    category: "Startup",
-    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=400&fit=crop",
-    content: `## Building Curloft from Scratch
-
-**Curloft** started as a simple idea — help creators and small businesses establish their digital presence. Today, it's a growing creative startup that blends design, storytelling, and technology.
-
-## The Beginning
-
-In August 2024, I co-founded Curloft with a vision: make professional digital presence accessible to everyone. We started by building websites and creating content for local businesses.
-
-## Lessons Learned
-
-### 1. Start Before You're Ready
-We didn't have all the answers when we started. We learned by doing, iterating, and improving.
-
-### 2. Listen to Your Users
-Our best features came from user feedback, not our own assumptions.
-
-### 3. Build in Public
-Sharing our journey openly attracted supporters, collaborators, and clients.
-
-### 4. Design Matters More Than You Think
-Great design isn't just aesthetics — it's trust, usability, and brand identity.
-
-### 5. Persistence Pays Off
-There were tough months with few clients and many doubts. Staying consistent was the hardest but most important thing.
-
-## What's Next
-
-Curloft continues to grow. We're expanding our services, building new tools, and helping more creators tell their stories online. The journey is just beginning.
-
----
-
-*Visit [curloft.com](https://curloft.com/) to learn more.*`,
-  },
 ];

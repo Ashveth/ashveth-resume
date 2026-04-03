@@ -35,12 +35,6 @@ const experiences: Experience[] = [
     ],
   },
   {
-    icon: Briefcase, title: "Co-founder", company: "Curloft", period: "Aug 2024 – Present",
-    description: "Building websites, blogs, and content for creators and small businesses. Leading product design and development.",
-    color: "text-purple-400", bgColor: "bg-purple-400/10",
-    link: "https://curloft.com/",
-  },
-  {
     icon: Code, title: "Student Developer", company: "MGM's College of Engineering and Technology", period: "2024 – Present",
     description: "Pursuing B.Tech in Computer Engineering. Active in hackathons, AI projects, and technical communities.",
     color: "text-blue-400", bgColor: "bg-blue-400/10",
