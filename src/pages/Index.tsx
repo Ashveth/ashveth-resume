@@ -11,7 +11,7 @@ import { useLenis } from "@/hooks/useLenis";
 
 // Lazy load heavier sections
 const AboutSection = lazy(() => import("@/components/AboutSection"));
-const SkillsSection = lazy(() => import("@/components/SkillsSection"));
+
 const ExperienceSection = lazy(() => import("@/components/ExperienceSection"));
 const ProjectsSection = lazy(() => import("@/components/ProjectsSection"));
 const AchievementsSection = lazy(() => import("@/components/AchievementsSection"));
@@ -71,9 +71,6 @@ const Index = () => {
 
         <StatsCounter />
 
-        <CinematicSection parallaxIntensity={25} scaleRange={[0.97, 1]} rotateRange={[0.5, 0]}>
-          <SkillsSection />
-        </CinematicSection>
 
         <CinematicSection parallaxIntensity={20} scaleRange={[0.97, 1]} rotateRange={[0.6, 0]}>
           <ExperienceSection />
