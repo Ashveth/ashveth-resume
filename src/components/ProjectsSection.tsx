@@ -33,7 +33,7 @@ const ProjectsSection = () => {
     { icon: Video, name: "VidyaSetu", tagline: "AI-powered learning platform for Tier-2/3 cities", url: "https://vidyasetu-beige.vercel.app/", gradient: "from-rose-500 to-pink-600" },
     { icon: BookOpen, name: "EduGrant AI", tagline: "Smart scholarship & education grant matching", url: "https://edu-sparkle-match.vercel.app/", gradient: "from-cyan-500 to-teal-600" },
     { icon: Gamepad2, name: "IntelliQuest", tagline: "AI-powered interactive quiz & learning platform", url: "https://intelli-quest-627cf36d.base44.app/", gradient: "from-fuchsia-500 to-purple-600" },
-    { icon: Activity, name: "AI Studio - Health App", tagline: "Google AI Studio health intelligence app", url: "https://aistudio.google.com/apps/drive/1uPIgag9fc7rLL40OFHvB3eyhZaQDBUbw?fullscreenApplet=true&showPreview=true&showAssistant=true", gradient: "from-lime-500 to-green-600" },
+    
     { icon: HelpCircle, name: "QuizWeb", tagline: "Interactive quiz platform for learning", url: "https://quiz-web-seven-sandy.vercel.app/", gradient: "from-yellow-500 to-amber-600" },
     { icon: Sprout, name: "KisanSeva", tagline: "Smart agriculture platform empowering farmers", url: "https://kisansevaa.vercel.app/", gradient: "from-green-600 to-lime-500" },
   ];
