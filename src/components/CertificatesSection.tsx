@@ -14,7 +14,9 @@ import mumbaiHacks from "@/assets/certs/mumbai-hacks.jpg";
 import studentHackpad from "@/assets/certs/student-hackpad.jpg";
 import techrushHackathon from "@/assets/certs/techrush-hackathon.jpg";
 import wicsHackathon from "@/assets/certs/wics-hackathon.jpg";
-
+import nscif2026 from "@/assets/certs/nscif-2026.png";
+import uaiHawkathon from "@/assets/certs/uai-hawkathon-2026.png";
+import lyzrCompletion from "@/assets/certs/lyzr-completion.png";
 const certificates = [
   {
     id: 1,
@@ -105,6 +107,30 @@ const certificates = [
     date: "2026",
     image: wicsHackathon,
     description: "Certificate of Participation — Social Impact and Education tracks.",
+  },
+  {
+    id: 12,
+    title: "NSCIF 2026 — Finalist",
+    organization: "Ashoka Young Changemakers & Connecting Dreams Foundation",
+    date: "2026",
+    image: nscif2026,
+    description: "Finalist in National Student Change Initiatives Fest 2026, EMPI Business School, New Delhi.",
+  },
+  {
+    id: 13,
+    title: "UAi Hawkathon 2026",
+    organization: "Universal AI University",
+    date: "2026",
+    image: uaiHawkathon,
+    description: "Certificate of Participation — Demonstrating innovation, creativity, and teamwork.",
+  },
+  {
+    id: 14,
+    title: "Lyzr Agent Studio — Completion",
+    organization: "Lyzr",
+    date: "March 2026",
+    image: lyzrCompletion,
+    description: "Exceptional skill in designing, building, and orchestrating AI agents using Lyzr Agent Studio.",
   },
 ];
 
