@@ -72,8 +72,7 @@ const AboutSection = () => {
                 </motion.div>
                 <motion.p variants={fadeSlide} className="text-foreground/70 leading-relaxed pl-[60px]">
                   My journey spans building 10+ AI-powered projects, winning hackathons like Grizzly Hacks (1st place) and Smart India AI Agent Hackathon, 
-                  and founding <a href="https://www.pdfsizefix.in/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-semibold">PdfSizeFix</a> — a free all-in-one online utility platform. I also co-founded <a href="https://curloft.com/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-semibold">Curloft</a>, 
-                  a creative startup helping creators build their digital presence. I believe in building tools that are simple, accessible, and impactful.
+                  and founding <a href="https://www.pdfsizefix.in/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-semibold">PdfSizeFix</a> — a free all-in-one online utility platform. I believe in building tools that are simple, accessible, and impactful.
                 </motion.p>
               </motion.div>
 
@@ -110,7 +109,7 @@ const AboutSection = () => {
             {[
               { icon: Award, title: "Hackathon Champion", desc: "1st place at Grizzly Hacks, Hack-Earth 2026 Finalist, 12+ hackathon certificates worldwide" },
               { icon: Code, title: "Builder & Innovator", desc: "10+ AI projects across EdTech, HealthTech, FinTech, Defense AI & Civic Tech with live deployments" },
-              { icon: BookOpen, title: "Founder & Student", desc: "Founder of PdfSizeFix, Co-founder at Curloft, B.Tech Computer Engineering at MGMCET" },
+              { icon: BookOpen, title: "Founder & Student", desc: "Founder of PdfSizeFix, B.Tech Computer Engineering at MGMCET" },
             ].map((item) => (
               <motion.div key={item.title} variants={fadeSlide}>
                 <TiltCard className="glass-card-hover p-6 h-full">
