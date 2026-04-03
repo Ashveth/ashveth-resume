@@ -22,11 +22,6 @@ const fadeSlide = {
 };
 
 const AboutSection = () => {
-  const imgRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: imgRef, offset: ["start end", "end start"] });
-  const imgY = useTransform(scrollYProgress, [0, 1], [30, -30]);
-  const imgScale = useTransform(scrollYProgress, [0, 0.5], [0.95, 1]);
-
   return (
     <section id="about" className="py-32 relative overflow-hidden ambient-glow">
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
@@ -46,54 +41,31 @@ const AboutSection = () => {
           </motion.div>
 
           <TiltCard className="glass-card p-8 md:p-12 mb-12">
-            <div className="grid md:grid-cols-2 gap-10 items-center">
-              <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={stagger}
-                className="order-2 md:order-1 space-y-6"
-              >
-                <motion.div variants={fadeSlide} className="flex items-start gap-4">
-                  <div className="w-11 h-11 rounded-2xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <Code className="w-5 h-5 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-display font-semibold mb-4 tracking-tight">Ashveth Maruti Pawar</h3>
-                    <p className="text-foreground/70 leading-relaxed">
-                      I'm a passionate tech enthusiast and second-year Computer Engineering student 
-                      at MGM College of Engineering & Technology, Navi Mumbai. I thrive 
-                      on solving real-world problems through AI, full-stack development, and creative digital tools.
-                    </p>
-                  </div>
-                </motion.div>
-                <motion.p variants={fadeSlide} className="text-foreground/70 leading-relaxed pl-[60px]">
-                  My journey spans building 10+ AI-powered projects, winning hackathons like Grizzly Hacks (1st place) and Smart India AI Agent Hackathon, 
-                  and founding <a href="https://www.pdfsizefix.in/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-semibold">PdfSizeFix</a> — a free all-in-one online utility platform. I believe in building tools that are simple, accessible, and impactful.
-                </motion.p>
-              </motion.div>
-
-              <motion.div ref={imgRef} style={{ y: imgY, scale: imgScale }} className="order-1 md:order-2 grid grid-cols-2 gap-4">
-                <div className="relative group overflow-hidden rounded-3xl">
-                  <img 
-                    src={professionalPhoto} 
-                    alt="Ashveth Pawar - Professional" 
-                    className="w-full h-full object-cover aspect-[3/4] transition-transform duration-700 ease-out group-hover:scale-110"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={stagger}
+              className="space-y-6"
+            >
+              <motion.div variants={fadeSlide} className="flex items-start gap-4">
+                <div className="w-11 h-11 rounded-2xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <Code className="w-5 h-5 text-primary" />
                 </div>
-                <div className="relative group overflow-hidden rounded-3xl mt-6">
-                  <img 
-                    src={streetPhoto} 
-                    alt="Ashveth Pawar - Street" 
-                    className="w-full h-full object-cover aspect-[3/4] transition-transform duration-700 ease-out group-hover:scale-110"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div>
+                  <h3 className="text-2xl font-display font-semibold mb-4 tracking-tight">Ashveth Maruti Pawar</h3>
+                  <p className="text-foreground/70 leading-relaxed">
+                    I'm a passionate tech enthusiast and second-year Computer Engineering student 
+                    at MGM College of Engineering & Technology, Navi Mumbai. I thrive 
+                    on solving real-world problems through AI, full-stack development, and creative digital tools.
+                  </p>
                 </div>
               </motion.div>
-            </div>
+              <motion.p variants={fadeSlide} className="text-foreground/70 leading-relaxed pl-[60px]">
+                My journey spans building 10+ AI-powered projects, winning hackathons like Grizzly Hacks (1st place) and Smart India AI Agent Hackathon, 
+                and founding <a href="https://www.pdfsizefix.in/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-semibold">PdfSizeFix</a> — a free all-in-one online utility platform. I believe in building tools that are simple, accessible, and impactful.
+              </motion.p>
+            </motion.div>
           </TiltCard>
 
           <motion.div
