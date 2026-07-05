@@ -247,7 +247,7 @@ const GallerySection = () => {
                   transition={{ duration: 0.4 }}
                   className="flex flex-col items-center justify-center max-h-full"
                 >
-                  <img src={currentPhotos[selectedImage].src} alt={currentPhotos[selectedImage].title} className="max-w-full max-h-[70vh] object-contain rounded-2xl shadow-xl" />
+                  <img src={currentPhotos[selectedImage].src} alt={currentPhotos[selectedImage].title} decoding="async" className="max-w-full max-h-[70vh] object-contain rounded-2xl shadow-xl" />
                   <div className="mt-6 text-center">
                     <h3 className="text-2xl font-bold mb-2">{currentPhotos[selectedImage].title}</h3>
                     <p className="text-muted-foreground">{currentPhotos[selectedImage].description}</p>
