@@ -135,15 +135,16 @@ const PhotoViewerButton = ({ photos }: { photos: { src: string; title: string }[
         {viewer !== null && (
           <Dialog open onOpenChange={() => setViewer(null)}>
             <DialogContent className="max-w-7xl w-full h-[90vh] p-0 bg-background/95 backdrop-blur-xl border-border/20 rounded-3xl">
-              <button onClick={() => setViewer(null)} className="absolute top-4 right-4 z-50 p-2 rounded-full bg-muted/60 backdrop-blur-sm hover:bg-muted transition-all hover:scale-105">
-                <X className="w-6 h-6" />
+              <button onClick={() => setViewer(null)} aria-label="Close photo viewer" className="absolute top-4 right-4 z-50 p-2 rounded-full bg-muted/60 backdrop-blur-sm hover:bg-muted transition-all hover:scale-105">
+                <X className="w-6 h-6" aria-hidden="true" />
               </button>
               <div className="relative w-full h-full flex items-center justify-center p-8">
                 <button
                   onClick={(e) => { e.stopPropagation(); setViewer(viewer === 0 ? photos.length - 1 : viewer - 1); }}
+                  aria-label="Previous photo"
                   className="absolute left-4 z-50 p-3 rounded-full bg-muted/60 backdrop-blur-sm hover:bg-muted transition-all hover:scale-110"
                 >
-                  <ChevronLeft className="w-6 h-6" />
+                  <ChevronLeft className="w-6 h-6" aria-hidden="true" />
                 </button>
                 <motion.div key={viewer} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }} transition={{ duration: 0.4 }} className="flex flex-col items-center justify-center max-h-full">
                   <img src={photos[viewer].src} alt={photos[viewer].title} decoding="async" className="max-w-full max-h-[70vh] object-contain rounded-2xl shadow-xl" />
@@ -151,13 +152,14 @@ const PhotoViewerButton = ({ photos }: { photos: { src: string; title: string }[
                 </motion.div>
                 <button
                   onClick={(e) => { e.stopPropagation(); setViewer(viewer === photos.length - 1 ? 0 : viewer + 1); }}
+                  aria-label="Next photo"
                   className="absolute right-4 z-50 p-3 rounded-full bg-muted/60 backdrop-blur-sm hover:bg-muted transition-all hover:scale-110"
                 >
-                  <ChevronRight className="w-6 h-6" />
+                  <ChevronRight className="w-6 h-6" aria-hidden="true" />
                 </button>
                 <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
                   {photos.map((_, i) => (
-                    <button key={i} onClick={() => setViewer(i)} className={`h-1.5 rounded-full transition-all ${i === viewer ? "bg-primary w-8" : "bg-muted-foreground/30 w-1.5"}`} />
+                    <button key={i} onClick={() => setViewer(i)} aria-label={`Go to photo ${i + 1}`} aria-current={i === viewer} className={`h-1.5 rounded-full transition-all ${i === viewer ? "bg-primary w-8" : "bg-muted-foreground/30 w-1.5"}`} />
                   ))}
                 </div>
               </div>
