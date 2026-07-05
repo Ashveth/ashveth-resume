@@ -227,16 +227,17 @@ const GallerySection = () => {
         {selectedImage !== null && openAlbum && (
           <Dialog open onOpenChange={() => setSelectedImage(null)}>
             <DialogContent className="max-w-7xl w-full h-[90vh] p-0 bg-background/95 backdrop-blur-xl border-border/20 rounded-3xl">
-              <button onClick={() => setSelectedImage(null)} className="absolute top-4 right-4 z-50 p-2 rounded-full bg-muted/60 backdrop-blur-sm hover:bg-muted transition-all hover:scale-105">
-                <X className="w-6 h-6" />
+              <button onClick={() => setSelectedImage(null)} aria-label="Close photo viewer" className="absolute top-4 right-4 z-50 p-2 rounded-full bg-muted/60 backdrop-blur-sm hover:bg-muted transition-all hover:scale-105">
+                <X className="w-6 h-6" aria-hidden="true" />
               </button>
 
               <div className="relative w-full h-full flex items-center justify-center p-8">
                 <button
                   onClick={(e) => { e.stopPropagation(); setSelectedImage(selectedImage === 0 ? currentPhotos.length - 1 : selectedImage - 1); }}
+                  aria-label="Previous photo"
                   className="absolute left-4 z-50 p-3 rounded-full bg-muted/60 backdrop-blur-sm hover:bg-muted transition-all hover:scale-110"
                 >
-                  <ChevronLeft className="w-6 h-6" />
+                  <ChevronLeft className="w-6 h-6" aria-hidden="true" />
                 </button>
 
                 <motion.div
@@ -256,14 +257,15 @@ const GallerySection = () => {
 
                 <button
                   onClick={(e) => { e.stopPropagation(); setSelectedImage(selectedImage === currentPhotos.length - 1 ? 0 : selectedImage + 1); }}
+                  aria-label="Next photo"
                   className="absolute right-4 z-50 p-3 rounded-full bg-muted/60 backdrop-blur-sm hover:bg-muted transition-all hover:scale-110"
                 >
-                  <ChevronRight className="w-6 h-6" />
+                  <ChevronRight className="w-6 h-6" aria-hidden="true" />
                 </button>
 
                 <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
                   {currentPhotos.map((_, index) => (
-                    <button key={index} onClick={() => setSelectedImage(index)} className={`h-1.5 rounded-full transition-all ${index === selectedImage ? "bg-primary w-8" : "bg-muted-foreground/30 w-1.5"}`} />
+                    <button key={index} onClick={() => setSelectedImage(index)} aria-label={`Go to photo ${index + 1}`} aria-current={index === selectedImage} className={`h-1.5 rounded-full transition-all ${index === selectedImage ? "bg-primary w-8" : "bg-muted-foreground/30 w-1.5"}`} />
                   ))}
                 </div>
               </div>
