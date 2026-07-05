@@ -48,15 +48,24 @@ const BlogPostPage = () => {
       }
     };
 
+    const escapeHtml = (str: string) =>
+      str
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+
     const inlineFormat = (text: string) => {
-      const raw = text
+      const escaped = escapeHtml(text);
+      const raw = escaped
         .replace(/\*\*(.*?)\*\*/g, '<strong class="text-foreground font-semibold">$1</strong>')
         .replace(/\*(.*?)\*/g, '<em>$1</em>')
         .replace(/\[(.*?)\]\((.*?)\)/g, (_match, label, url) => {
-          const sanitizedUrl = /^https?:\/\//i.test(url) ? url : '#';
-          return `<a href="${sanitizedUrl}" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">${label}</a>`;
+          const safeUrl = /^https?:\/\//i.test(url) ? url : '#';
+          return `<a href="${safeUrl}" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">${label}</a>`;
         });
-      return DOMPurify.sanitize(raw);
+      return DOMPurify.sanitize(raw, { ALLOWED_URI_REGEXP: /^(?:https?:)/i });
     };
 
     for (const line of lines) {
