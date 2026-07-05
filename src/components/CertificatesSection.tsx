@@ -269,18 +269,20 @@ const CertificatesSection = () => {
             <DialogContent className="max-w-5xl w-[95vw] max-h-[90vh] p-0 bg-background/80 backdrop-blur-2xl border-border/30 rounded-3xl overflow-hidden shadow-2xl">
               <button
                 onClick={() => setSelectedCert(null)}
+                aria-label="Close certificate viewer"
                 className="absolute top-5 right-5 z-50 p-2 rounded-full bg-muted/60 backdrop-blur-sm hover:bg-muted transition-all duration-200"
               >
-                <X className="w-4 h-4" />
+                <X className="w-4 h-4" aria-hidden="true" />
               </button>
 
               <div className="relative flex flex-col items-center justify-center p-6 md:p-12 min-h-[60vh]">
                 {/* Nav buttons */}
                 <button
                   onClick={(e) => { e.stopPropagation(); navigate(-1); }}
+                  aria-label="Previous certificate"
                   className="absolute left-4 top-1/2 -translate-y-1/2 z-50 p-2.5 rounded-full bg-muted/60 backdrop-blur-sm hover:bg-muted transition-all duration-200 hover:scale-105"
                 >
-                  <ChevronLeft className="w-5 h-5" />
+                  <ChevronLeft className="w-5 h-5" aria-hidden="true" />
                 </button>
 
                 <motion.div
