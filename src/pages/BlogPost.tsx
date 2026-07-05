@@ -117,6 +117,8 @@ const BlogPostPage = () => {
         <img
           src={post.image}
           alt={post.title}
+          fetchPriority="high"
+          decoding="async"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/20" />
@@ -192,6 +194,8 @@ const BlogPostPage = () => {
                   <img
                     src={rp.image}
                     alt={rp.title}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>

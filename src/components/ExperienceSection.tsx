@@ -146,7 +146,7 @@ const PhotoViewerButton = ({ photos }: { photos: { src: string; title: string }[
                   <ChevronLeft className="w-6 h-6" />
                 </button>
                 <motion.div key={viewer} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }} transition={{ duration: 0.4 }} className="flex flex-col items-center justify-center max-h-full">
-                  <img src={photos[viewer].src} alt={photos[viewer].title} className="max-w-full max-h-[70vh] object-contain rounded-2xl shadow-xl" />
+                  <img src={photos[viewer].src} alt={photos[viewer].title} decoding="async" className="max-w-full max-h-[70vh] object-contain rounded-2xl shadow-xl" />
                   <p className="mt-4 text-lg font-display font-semibold">{photos[viewer].title}</p>
                 </motion.div>
                 <button

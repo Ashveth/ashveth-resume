@@ -108,7 +108,7 @@ const VideoCard = ({
           <img
             src={video.thumbnail || `https://img.youtube.com/vi/${video.id}/maxresdefault.jpg`}
             alt={video.title}
-            loading="lazy"
+            loading="lazy" decoding="async"
             onLoad={() => setImgLoaded(true)}
             className={`w-full h-full object-cover transition-all duration-700 group-hover:scale-110 ${
               imgLoaded ? "opacity-100" : "opacity-0"

@@ -138,7 +138,7 @@ const GallerySection = () => {
                               src={photo.src}
                               alt={photo.title}
                               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                              loading="lazy"
+                              loading="lazy" decoding="async"
                             />
                           ))}
                         </div>
@@ -203,7 +203,7 @@ const GallerySection = () => {
                             src={photo.src}
                             alt={photo.title}
                             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                            loading="lazy"
+                            loading="lazy" decoding="async"
                           />
                         </div>
                         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex items-end p-4">
@@ -247,7 +247,7 @@ const GallerySection = () => {
                   transition={{ duration: 0.4 }}
                   className="flex flex-col items-center justify-center max-h-full"
                 >
-                  <img src={currentPhotos[selectedImage].src} alt={currentPhotos[selectedImage].title} className="max-w-full max-h-[70vh] object-contain rounded-2xl shadow-xl" />
+                  <img src={currentPhotos[selectedImage].src} alt={currentPhotos[selectedImage].title} decoding="async" className="max-w-full max-h-[70vh] object-contain rounded-2xl shadow-xl" />
                   <div className="mt-6 text-center">
                     <h3 className="text-2xl font-bold mb-2">{currentPhotos[selectedImage].title}</h3>
                     <p className="text-muted-foreground">{currentPhotos[selectedImage].description}</p>

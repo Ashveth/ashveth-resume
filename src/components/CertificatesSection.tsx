@@ -214,6 +214,8 @@ const CertificatesSection = () => {
                 <img
                   src={cert.image}
                   alt={cert.title}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
                 {/* Hover overlay */}
@@ -292,6 +294,7 @@ const CertificatesSection = () => {
                   <img
                     src={certificates[selectedCert].image}
                     alt={certificates[selectedCert].title}
+                    decoding="async"
                     className="max-w-full max-h-[55vh] object-contain rounded-2xl shadow-xl"
                   />
                   <div className="text-center space-y-2">
