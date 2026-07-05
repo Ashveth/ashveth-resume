@@ -294,6 +294,7 @@ const CertificatesSection = () => {
                   <img
                     src={certificates[selectedCert].image}
                     alt={certificates[selectedCert].title}
+                    decoding="async"
                     className="max-w-full max-h-[55vh] object-contain rounded-2xl shadow-xl"
                   />
                   <div className="text-center space-y-2">
