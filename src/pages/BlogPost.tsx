@@ -194,6 +194,8 @@ const BlogPostPage = () => {
                   <img
                     src={rp.image}
                     alt={rp.title}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
