@@ -322,9 +322,10 @@ const CertificatesSection = () => {
 
                 <button
                   onClick={(e) => { e.stopPropagation(); navigate(1); }}
+                  aria-label="Next certificate"
                   className="absolute right-4 top-1/2 -translate-y-1/2 z-50 p-2.5 rounded-full bg-muted/60 backdrop-blur-sm hover:bg-muted transition-all duration-200 hover:scale-105"
                 >
-                  <ChevronRight className="w-5 h-5" />
+                  <ChevronRight className="w-5 h-5" aria-hidden="true" />
                 </button>
 
                 {/* Dots */}
@@ -333,6 +334,8 @@ const CertificatesSection = () => {
                     <button
                       key={i}
                       onClick={() => setSelectedCert(i)}
+                      aria-label={`Go to certificate ${i + 1}`}
+                      aria-current={i === selectedCert}
                       className={`h-1.5 rounded-full transition-all duration-400 ${
                         i === selectedCert
                           ? "bg-primary w-6"
